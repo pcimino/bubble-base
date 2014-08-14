@@ -1,0 +1,212 @@
+<html>
+<head>
+<style>
+html,
+body,
+#bubbles { height: 100% }
+body { overflow: hidden }
+#bubbles { padding: 100px 0 }
+.bubble {
+    width: 60px;
+    height: 60px;
+    background: #ffb200;
+    border-radius: 200px;
+    -moz-border-radius: 200px;
+    -webkit-border-radius: 200px;
+    position: absolute;
+	font-family:"Times New Roman", Times, serif;
+}
+.font-center {
+    text-align:center;
+    background-color: #b0e0e6;
+	font-size:10%;
+}
+p {
+    margin: 0;
+    padding: 0;
+}
+.top-margin {
+	margin: 10% 0 0 0;
+}
+.x0 {
+    left: 50%;
+	top:15%;
+    -webkit-transform: scale(0.9);
+    -moz-transform: scale(0.9);
+    transform: scale(0.9);
+    opacity: 0.0;
+}
+.x1 {
+    left: 15%;
+	top:50%;
+    -webkit-transform: scale(2.9);
+    -moz-transform: scale(2.9);
+    transform: scale(0.9);
+    opacity: 0.0;
+}
+
+.x2 {
+    left: 85%;
+	top:50%;
+    -webkit-transform: scale(0.6);
+    -moz-transform: scale(0.6);
+    transform: scale(0.6);
+    opacity: 0.0;
+}
+.x3 {
+    left: 50%;
+	top:85%;
+    -webkit-transform: scale(0.8);
+    -moz-transform: scale(0.8);
+    transform: scale(0.8);
+    opacity: 0.0;
+}
+.x4 {
+    left: 25%;
+	top:25%;
+    -webkit-transform: scale(0.75);
+    -moz-transform: scale(0.75);
+    transform: scale(0.75);
+    opacity: 0.0;
+}
+.x5 {
+    left: 75%;
+	top:75%;
+    -webkit-transform: scale(0.8);
+    -moz-transform: scale(0.8);
+    transform: scale(0.8);
+    opacity: 0.0; 
+}
+.x6 {
+    left: 75%;
+	top:25%;
+    -webkit-transform: scale(0.8);
+    -moz-transform: scale(0.8);
+    transform: scale(0.8);
+    opacity: 0.0; 
+}
+.x7 {
+    left: 25%;
+	top:75%;
+    -webkit-transform: scale(0.8);
+    -moz-transform: scale(0.8);
+    transform: scale(0.8);
+    opacity: 0.0; 
+}
+.xProduct {
+    left: 35%;
+	top:50%;
+    -webkit-transform: scale(0.8);
+    -moz-transform: scale(0.8);
+    transform: scale(0.8);
+    opacity: 0.0; 
+}
+.xService {
+    left: 65%;
+	top:50%;
+    -webkit-transform: scale(0.8);
+    -moz-transform: scale(0.8);
+    transform: scale(0.8);
+    opacity: 0.0; 
+}
+
+
+</style>
+
+<script>
+var blueRange = ['#FFFFFF', 'E6EBFA', 'CCD6F5', 'B2C2F0', '99ADEB', '8099E6', '6685E0', '4D70DB', '335CD6', '1947D1', '#0033CC'];
+var redRange = ['#FFFFFF', 'FFE6E6', 'FFCCCC', 'FFB2B2', 'FF9999', 'FF8080', 'FF6666', 'FF4D4D', 'FF3333', 'FF1919', '#FF0000'];
+var greenRange = ['#FFFFFF', 'E6F5EB', 'CCEBD6', 'B2E0C2', '99D6AD', '80CC99', '66C285', '4DB870', '33AD5C', '19A347',  '#009933'];
+var orangeRange = ['#FFFFFF', '#FFF5EB', '#FFEBD6', '#FFE0C2', '#FFD6AD', '#FFCC99', '#FFC285', '#FFB870', '#FFAD5C', '#FFA347', '#FF9933' ];
+
+var lightenDarkenHexColor = function(hexColor, amt) {
+	if (hexColor[0] != '#') {
+		hexColor = '#' + hexColor;
+	}
+    hexColor = parseInt(hexColor, 16);
+    return (((hexColor & 0x0000FF) + amt) | ((((hexColor >> 8) & 0x00FF) + amt) << 8) | (((hexColor  >> 16) + amt) << 16)).toString(16);
+}
+
+var startBubble = function(bubbleArray) {
+	for (var i = 0; i < bubbleArray.length; i++) {
+	//	bubbleArray[i].style.opacity = 0.01;
+		//bubbleArray[i].style.scale = 0.01;
+		bubbleArray[i].style.backgroundColor = orangeRange[0];
+	}
+}
+
+var setupBubble = function(bubbleArray, percent, colorArray) {
+	for (var i = 0; i < bubbleArray.length; i++) {
+			var adjust = percent;
+			if (percent > 100) {
+				adjust = parseInt(200 - percent);
+				console.log(percent+":"+adjust)
+			}
+		    bubbleArray[i].style.opacity = (adjust/10);
+			var colorNum = parseInt(adjust/10);
+			if (colorNum < 0) colorNum = 0;
+			if (colorNum >= colorArray.length) colorNum = colorArray.length - 1;
+			bubbleArray[i].style.backgroundColor = colorArray[colorNum];
+			var sc = 'scale(';
+			var scAmt = .02 * percent;
+			if (scAmt < 10) sc += '0';
+				sc += scAmt;
+
+			sc += ')';
+			console.log('scale ' + sc);
+			bubbleArray[i].style['transform'] = bubbleArray[i].style['-o-transform'] = bubbleArray[i].style['-webkit-transform'] = bubbleArray[i].style['-moz-transform']  = sc;
+	}
+}
+
+
+var bub = document.getElementsByClassName('bubble');
+var count = 0;
+var expandBubble = function(colorArray, initial) {
+	if (initial) count = initial;
+	if (count <= 10) {
+		setupBubble(bub, count*10, colorArray);
+		count++;
+		setTimeout(function(){expandBubble(colorArray)},200);
+	}
+}
+var shrinkBubble = function(colorArray, initial) {
+	if (initial) count = initial;
+	if (count >= 0) {
+		setupBubble(bub, count*10, colorArray);
+		count--;
+		setTimeout(function(){shrinkBubble(colorArray)},200);
+	}
+}
+
+var popBubble = function(colorArray, initial) {
+	if (initial) count = initial;
+	if (count <= 20) {
+		setupBubble(bub, count*10,colorArray);
+		count++;
+		setTimeout(function(){popBubble(colorArray)},100);
+	}
+}
+
+
+</script>
+</head>
+
+<body>
+<div id="bubbles">
+        <div class="bubble x0 font-center">
+			<img class='top-margin' src="http://hybridside.llow.it/wordpress/wp-content/uploads/create-wordpress-thumbnails-300x300-150x150.jpg"  height="25%" width="25%">
+			<p class='top-margin'>Text</p><p>Some more text</p><p>Some more text</p>
+		</div>
+        <div class="bubble x1"></div>
+        <div class="bubble x2"></div>
+        <div class="bubble x3"></div>
+        <div class="bubble x4"></div>
+        <div class="bubble x5"></div>
+        <div class="bubble x6"></div>
+        <div class="bubble x7"></div>
+        <div class="bubble xProduct"></div>
+        <div class="bubble xService"></div>
+</div>
+</body>
+</html>
+

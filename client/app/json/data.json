@@ -1,0 +1,70 @@
+{
+  "data": [
+{
+  "businesses": [
+        {
+          "name": "Bob the Builder",
+          "street": "1 Main St.",
+          "city": "Oklahoma",
+          "state": "OK",
+          "phone": "(800) 555-1212",
+          "img": "bob.png",
+          "productCategory": [
+            "Construction",
+            "Buildings",
+            "Custom Homes"
+          ],
+          "serviceCategory": [
+            "Construction",
+            "General Contracting",
+            "Home Repair",
+            "Woodworking & Paving"
+          ]
+        },
+        {
+          "name": "Dora the Explorer",
+          "street": "Pikes Peak Pike National Forest",
+          "city": "Pikes Peak",
+          "state": "CO",
+          "phone": "(202) 456-1111",
+          "img": "dora.png",
+          "productCategory": [
+            "Maps",
+            "Geodedic Survey Maps & Data"
+          ],
+          "serviceCategory": [
+            "Exploration",
+            "Charter the Uncharted",
+            "Arctic & Antarctic Tours"
+          ]
+        },
+        {
+          "name": "Encyclopedia Brown",
+          "street": "52 Wagon Ave.",
+          "city": "Chester",
+          "state": "NY",
+          "phone": "(212) 867-5309",
+          "img": "brown.png",
+          "productCategory": [],
+          "serviceCategory": [
+            "Investigative Services",
+            "25 cents per day, plus expenses - No case too small."
+          ]
+        },
+        {
+          "name": "Mystery, Inc.",
+          "street": "52 Mystery Ave.",
+          "city": "Albuquerque",
+          "state": "NM",
+          "phone": "(505) MYS-TERY",
+          "img": "scooby.png",
+          "productCategory": [],
+          "serviceCategory": [
+            "Investigative Services",
+            "K-9 Investigations"
+          ]
+        }
+      ]
+    }
+  ]
+}

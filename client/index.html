@@ -1,0 +1,172 @@
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <base href="/">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <!-- build:css(client) app/vendor.css -->
+      <!-- bower:css -->
+      <!-- endbower -->
+    <!-- endbuild -->
+    <!-- build:css({.tmp,client}) app/app.css -->
+    <link rel="stylesheet" href="app/app.css">
+      <!-- injector:css -->
+      <!-- endinjector -->
+    <!-- endbuild -->
+  </head>
+  <body ng-app="bubbleBaseApp">
+    <!--[if lt IE 7]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+
+    <!-- Add your site or application content here -->
+    <div ui-view=""></div>
+
+    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
+     <script>
+       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+       (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+       m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+       })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+       ga('create', 'UA-XXXXX-X');
+       ga('send', 'pageview');
+    </script>
+
+    <!--[if lt IE 9]>
+    <script src="bower_components/es5-shim/es5-shim.js"></script>
+    <script src="bower_components/json3/lib/json3.min.js"></script>
+    <![endif]-->
+
+    <!-- build:js(client) app/vendor.js -->
+      <!-- bower:js -->
+      <script src="bower_components/jquery/dist/jquery.js"></script>
+      <script src="bower_components/angular/angular.js"></script>
+      <script src="bower_components/json3/lib/json3.js"></script>
+      <script src="bower_components/angular-resource/angular-resource.js"></script>
+      <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+      <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+      <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+      <script src="bower_components/lodash/dist/lodash.compat.js"></script>
+      <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+      <!-- endbower -->
+    <!-- endbuild -->
+
+        <!-- build:js({.tmp,client}) app/app.js -->
+        <script src="app/app.js"></script>
+          <!-- injector:js -->
+          <script src="app/bubble/bubble.controller.js"></script>
+          <script src="app/bubble/bubble.js"></script>
+          <script src="app/list/list.controller.js"></script>
+          <script src="app/list/list.js"></script>
+          <script src="app/main/main.controller.js"></script>
+          <script src="app/main/main.js"></script>
+          <script src="app/services/get.data.service.js"></script>
+          <script src="app/start/start.controller.js"></script>
+          <script src="app/start/start.js"></script>
+          <script src="components/navbar/navbar.controller.js"></script>
+          <!-- endinjector -->
+        <!-- endbuild -->
+
+      <script>
+          var bizArray = new Object();
+bizArray.businesses = [];
+
+bizArray.newBiz = function(name, street, city, state, phone, img, productCategory, serviceCategory) {
+  this.businesses.push({name:name, street:street, city:city, state:state, phone:phone, img:img, productCategory:productCategory, serviceCategory:serviceCategory});
+};
+
+bizArray.getProductDisplay = function(productLevel) {
+  var display = [];
+  for (var bizCount in this.businesses) {
+    var biz = this.businesses[bizCount];
+    if (biz.productCategory.length > 0) {
+      if (productLevel >= biz.productCategory.length) {
+        // drilled all the way down, display business
+        display.push({name:biz.name, street:biz.street, city:biz.city, state:biz.state, phone:biz.phone, img:biz.img});
+      } else {
+        var productCategory = biz.productCategory[productLevel];
+        display.push({cat:productCategory});
+      }
+    }
+  }
+  return display;
+};
+bizArray.getServiceDisplay = function(serviceLevel) {
+  var display = [];
+  for (var bizCount in this.businesses) {
+    var biz = this.businesses[bizCount];
+    if (biz.serviceCategory.length > 0) {
+      var biz = this.businesses[bizCount];
+      if (serviceLevel >= biz.serviceCategory.length) {
+        // drilled all the way down, display business
+        display.push({name:biz.name, street:biz.street, city:biz.city, state:biz.state, img:biz.img});
+      } else {
+        if (biz.serviceCategory.length > 0) {
+          var serviceCategory = biz.serviceCategory[serviceLevel];
+          display.push({cat:serviceCategory});
+        }
+      }
+    }
+  }
+  return display;
+};
+
+bizArray.initialize = function() {
+  bizArray.businesses = [];
+  var productCategory = [];
+  var serviceCategory = [];
+
+  // bob the builder
+  productCategory[0] = 'Construction';
+  productCategory[1] = 'Buildings';
+  productCategory[2] = 'Custom Homes';
+  serviceCategory[0] = 'Construction';
+  serviceCategory[1] = 'General Contracting';
+  serviceCategory[2] = 'Home Repair';
+  serviceCategory[3] = 'Woodworking & Paving';
+  bizArray.newBiz('Bob the Builder', '1 Main St.', 'Oklahoma', 'OK', '(800) 555-1212', 'bob.png', productCategory, serviceCategory);
+
+  // dora the explorer
+  productCategory = [];
+  serviceCategory = [];
+
+  productCategory[0] = 'Maps';
+  productCategory[1] = 'Geodedic Survey Maps & Data';
+
+  serviceCategory[0] = 'Exploration';
+  serviceCategory[1] = 'Charter the Uncharted';
+  serviceCategory[2] = 'Arctic & Antarctic Tours';
+  bizArray.newBiz('Dora the Explorer', 'Pikes Peak Pike National Forest', 'Pikes Peak', 'CO', '(202) 456-1111', 'dora.png', productCategory, serviceCategory);
+
+  // encyclopedia brown
+  productCategory = [];
+  serviceCategory = [];
+
+  serviceCategory[0] = 'Investigative Services';
+  serviceCategory[1] = "25 cents per day, plus expenses - No case too small.";
+  bizArray.newBiz('Encyclopedia Brown', '52 Wagon Ave.', 'Chester', 'NY', '(212) 867-5309', 'brown.png', productCategory, serviceCategory);
+
+  // encyclopedia brown
+  productCategory = [];
+  serviceCategory = [];
+
+  serviceCategory[0] = 'Investigative Services';
+  serviceCategory[1] = "K-9 Investigations";
+  bizArray.newBiz('Mystery, Inc.', '52 Mystery Ave.', 'Albuquerque', 'NM', '(505) MYS-TERY', 'scooby.png', productCategory, serviceCategory);
+
+
+
+
+};
+bizArray.initialize();
+          </script>
+</body>
+</html>

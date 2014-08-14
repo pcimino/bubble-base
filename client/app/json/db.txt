@@ -1,0 +1,90 @@
+var bizArray = new Object();
+bizArray.businesses = [];
+
+bizArray.newBiz = function(name, street, city, state, phone, img, productCategory, serviceCategory) {
+  this.businesses.push({name:name, street:street, city:city, state:state, phone:phone, img:img, productCategory:productCategory, serviceCategory:serviceCategory});
+};
+
+bizArray.getProductDisplay = function(productLevel) {
+  var display = [];
+  for (var bizCount in this.businesses) {
+    var biz = this.businesses[bizCount];
+    if (biz.productCategory.length > 0) {
+      if (productLevel >= biz.productCategory.length) {
+        // drilled all the way down, display business
+        display.push({name:biz.name, street:biz.street, city:biz.city, state:biz.state, phone:biz.phone, img:biz.img});
+      } else {
+        var productCategory = biz.productCategory[productLevel];
+        display.push({cat:productCategory});
+      }
+    }
+  }
+  return display;
+};
+bizArray.getServiceDisplay = function(serviceLevel) {
+  var display = [];
+  for (var bizCount in this.businesses) {
+    var biz = this.businesses[bizCount];
+    if (biz.serviceCategory.length > 0) {
+      var biz = this.businesses[bizCount];
+      if (serviceLevel >= biz.serviceCategory.length) {
+        // drilled all the way down, display business
+        display.push({name:biz.name, street:biz.street, city:biz.city, state:biz.state, img:biz.img});
+      } else {
+        if (biz.serviceCategory.length > 0) {
+          var serviceCategory = biz.serviceCategory[serviceLevel];
+          display.push({cat:serviceCategory});
+        }
+      }
+    }
+  }
+  return display;
+};
+
+bizArray.initialize = function() {
+  bizArray.businesses = [];
+  var productCategory = [];
+  var serviceCategory = [];
+
+  // bob the builder
+  productCategory[0] = 'Construction';
+  productCategory[1] = 'Buildings';
+  productCategory[2] = 'Custom Homes';
+  serviceCategory[0] = 'Construction';
+  serviceCategory[1] = 'General Contracting';
+  serviceCategory[2] = 'Home Repair';
+  serviceCategory[3] = 'Woodworking & Paving';
+  bizArray.newBiz('Bob the Builder', '1 Main St.', 'Oklahoma', 'OK', '(800) 555-1212', 'bob.png', productCategory, serviceCategory);
+
+  // dora the explorer
+  productCategory = [];
+  serviceCategory = [];
+
+  productCategory[0] = 'Maps';
+  productCategory[1] = 'Geodedic Survey Maps & Data';
+
+  serviceCategory[0] = 'Exploration';
+  serviceCategory[1] = 'Charter the Uncharted';
+  serviceCategory[2] = 'Arctic & Antarctic Tours';
+  bizArray.newBiz('Dora the Explorer', 'Pikes Peak Pike National Forest', 'Pikes Peak', 'CO', '(202) 456-1111', 'dora.png', productCategory, serviceCategory);
+
+  // encyclopedia brown
+  productCategory = [];
+  serviceCategory = [];
+
+  serviceCategory[0] = 'Investigative Services';
+  serviceCategory[1] = "25 cents per day, plus expenses - No case too small.";
+  bizArray.newBiz('Encyclopedia Brown', '52 Wagon Ave.', 'Chester', 'NY', '(212) 867-5309', 'brown.png', productCategory, serviceCategory);
+
+  // encyclopedia brown
+  productCategory = [];
+  serviceCategory = [];
+
+  serviceCategory[0] = 'Investigative Services';
+  serviceCategory[1] = "K-9 Investigations";
+  bizArray.newBiz('Mystery, Inc.', '52 Mystery Ave.', 'Albuquerque', 'NM', '(505) MYS-TERY', 'scooby.png', productCategory, serviceCategory);
+
+
+
+
+};

@@ -1,3 +1,4 @@
+// Generated on 2014-09-04 using generator-angular-fullstack 2.0.13
 'use strict';
 
 module.exports = function (grunt) {
@@ -15,7 +16,8 @@ module.exports = function (grunt) {
     ngtemplates: 'grunt-angular-templates',
     cdnify: 'grunt-google-cdn',
     protractor: 'grunt-protractor-runner',
-    injector: 'grunt-asset-injector'
+    injector: 'grunt-asset-injector',
+    buildcontrol: 'grunt-build-control'
   });
 
   // Time how long tasks take. Can help when optimizing build times
@@ -25,6 +27,7 @@ module.exports = function (grunt) {
   grunt.initConfig({
 
     // Project settings
+    pkg: grunt.file.readJSON('package.json'),
     yeoman: {
       // configurable paths
       client: require('./bower.json').appPath || 'client',
@@ -77,16 +80,6 @@ module.exports = function (grunt) {
         ],
         tasks: ['newer:jshint:all', 'karma']
       },
-      injectLess: {
-        files: [
-          '<%= yeoman.client %>/{app,components}/**/*.less'],
-        tasks: ['injector:less']
-      },
-      less: {
-        files: [
-          '<%= yeoman.client %>/{app,components}/**/*.less'],
-        tasks: ['less', 'autoprefixer']
-      },
       gruntfile: {
         files: ['Gruntfile.js']
       },
@@ -125,7 +118,16 @@ module.exports = function (grunt) {
         options: {
           jshintrc: 'server/.jshintrc'
         },
-        src: [ 'server/{,*/}*.js']
+        src: [
+          'server/**/*.js',
+          '!server/**/*.spec.js'
+        ]
+      },
+      serverTest: {
+        options: {
+          jshintrc: 'server/.jshintrc-spec'
+        },
+        src: ['server/**/*.spec.js']
       },
       all: [
         '<%= yeoman.client %>/{app,components}/**/*.js',
@@ -207,11 +209,11 @@ module.exports = function (grunt) {
     },
 
     // Automatically inject Bower components into the app
-    bowerInstall: {
+    wiredep: {
       target: {
         src: '<%= yeoman.client %>/index.html',
         ignorePath: '<%= yeoman.client %>/',
-        exclude: [/bootstrap-sass-official/, /bootstrap.js/, '/json3/', '/es5-shim/', /bootstrap.css/, /font-awesome.css/ ]
+        exclude: [/bootstrap-sass-official/, /bootstrap.js/, '/json3/', '/es5-shim/']
       }
     },
 
@@ -325,7 +327,7 @@ module.exports = function (grunt) {
     // Replace Google CDN references
     cdnify: {
       dist: {
-        html: ['<%= yeoman.dist %>/*.html']
+        html: ['<%= yeoman.dist %>/public/*.html']
       }
     },
 
@@ -367,13 +369,33 @@ module.exports = function (grunt) {
       }
     },
 
+    buildcontrol: {
+      options: {
+        dir: 'dist',
+        commit: true,
+        push: true,
+        connectCommits: false,
+        message: 'Built %sourceName% from commit %sourceCommit% on branch %sourceBranch%'
+      },
+      heroku: {
+        options: {
+          remote: 'heroku',
+          branch: 'master'
+        }
+      },
+      openshift: {
+        options: {
+          remote: 'openshift',
+          branch: 'master'
+        }
+      }
+    },
+
     // Run some tasks in parallel to speed up the build process
     concurrent: {
       server: [
-        'less',
       ],
       test: [
-        'less',
       ],
       debug: {
         tasks: [
@@ -385,7 +407,6 @@ module.exports = function (grunt) {
         }
       },
       dist: [
-        'less',
         'imagemin',
         'svgmin'
       ]
@@ -429,22 +450,6 @@ module.exports = function (grunt) {
       all: localConfig
     },
 
-    // Compiles Less to CSS
-    less: {
-      options: {
-        paths: [
-          '<%= yeoman.client %>/bower_components',
-          '<%= yeoman.client %>/app',
-          '<%= yeoman.client %>/components'
-        ]
-      },
-      server: {
-        files: {
-          '.tmp/app/app.css' : '<%= yeoman.client %>/app/app.less'
-        }
-      },
-    },
-
     injector: {
       options: {
 
@@ -467,25 +472,6 @@ module.exports = function (grunt) {
                '!{.tmp,<%= yeoman.client %>}/{app,components}/**/*.spec.js',
                '!{.tmp,<%= yeoman.client %>}/{app,components}/**/*.mock.js']
             ]
-        }
-      },
-
-      // Inject component less into app.less
-      less: {
-        options: {
-          transform: function(filePath) {
-            filePath = filePath.replace('/client/app/', '');
-            filePath = filePath.replace('/client/components/', '');
-            return '@import \'' + filePath + '\';';
-          },
-          starttag: '// injector',
-          endtag: '// endinjector'
-        },
-        files: {
-          '<%= yeoman.client %>/app/app.less': [
-            '<%= yeoman.client %>/{app,components}/**/*.less',
-            '!<%= yeoman.client %>/app/app.less'
-          ]
         }
       },
 
@@ -534,10 +520,9 @@ module.exports = function (grunt) {
       return grunt.task.run([
         'clean:server',
         'env:all',
-        'injector:less', 
         'concurrent:server',
         'injector',
-        'bowerInstall',
+        'wiredep',
         'autoprefixer',
         'concurrent:debug'
       ]);
@@ -546,10 +531,9 @@ module.exports = function (grunt) {
     grunt.task.run([
       'clean:server',
       'env:all',
-      'injector:less', 
       'concurrent:server',
       'injector',
-      'bowerInstall',
+      'wiredep',
       'autoprefixer',
       'express:dev',
       'wait',
@@ -576,7 +560,6 @@ module.exports = function (grunt) {
       return grunt.task.run([
         'clean:server',
         'env:all',
-        'injector:less', 
         'concurrent:test',
         'injector',
         'autoprefixer',
@@ -589,10 +572,9 @@ module.exports = function (grunt) {
         'clean:server',
         'env:all',
         'env:test',
-        'injector:less', 
         'concurrent:test',
         'injector',
-        'bowerInstall',
+        'wiredep',
         'autoprefixer',
         'express:dev',
         'protractor'
@@ -607,10 +589,9 @@ module.exports = function (grunt) {
 
   grunt.registerTask('build', [
     'clean:dist',
-    'injector:less', 
     'concurrent:dist',
     'injector',
-    'bowerInstall',
+    'wiredep',
     'useminPrepare',
     'autoprefixer',
     'ngtemplates',

@@ -1,25 +1,25 @@
 /**
  * Using Rails-like standard naming convention for endpoints.
- * GET     /things              ->  index
- * POST    /things              ->  create
- * GET     /things/:id          ->  show
- * PUT     /things/:id          ->  update
- * DELETE  /things/:id          ->  destroy
+ * GET     /concepts              ->  index
+ * POST    /concepts              ->  create
+ * GET     /concepts/:id          ->  show
+ * PUT     /concepts/:id          ->  update
+ * DELETE  /concepts/:id          ->  destroy
  */
 
 'use strict';
 
 var _ = require('lodash');
 
-// Get list of things
+// Get list of concepts
 exports.index = function(req, res) {
   res.json([
   {
-  name : 'Development Tools',
-  info : 'Integration with popular tools such as Bower, Grunt, Karma, Mocha, JSHint, Node Inspector, Livereload, Protractor, Jade, Stylus, Sass, CoffeeScript, and Less.'
+  name : 'Consumer Friendly',
+  info : 'Let the non-technical user easily find answers with intuitive UI.'
   }, {
-  name : 'Server and Client integration',
-  info : 'Built with a powerful and fun stack: MongoDB, Express, AngularJS, and Node.'
+  name : 'Specialized',
+  info : "The goal isn't to create a multi-purpose search, but a targeted set of filters for a specific purpose."
   }, {
   name : 'Smart Build System',
   info : 'Build system ignores `spec` files, allowing you to keep tests alongside code. Automatic injection of scripts and styles into your index.html'

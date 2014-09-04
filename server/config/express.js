@@ -3,7 +3,6 @@
  */
 
 'use strict';
-
 var express = require('express');
 var favicon = require('static-favicon');
 var morgan = require('morgan');

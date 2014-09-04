@@ -2,29 +2,116 @@
     margin: 20px 0;
 }
 
-#banner {
-    border-bottom: none;
-    margin-top: -20px;
+html,
+body,
+body { overflow: hidden }
+#bubbles { 
+  padding: 100px 0;
+  height: 100% 
 }
 
-#banner h1 {
-    font-size: 60px;
-    line-height: 1;
-    letter-spacing: -1px;
+.bubble {
+    width: 60px;
+    height: 60px;
+    background: #ffb200;
+    border-radius: 200px;
+    -moz-border-radius: 200px;
+    -webkit-border-radius: 200px;
+    position: absolute;
+	font-family:"Times New Roman", Times, serif;
+}
+.font-center {
+    text-align:center;
+    background-color: #b0e0e6;
+	font-size:10%;
+}
+p {
+    margin: 0; 
+    padding: 0;
+}
+.top-margin {
+	margin: 10% 0 0 0;
+}
+.x0 {
+    left: 50%;
+	top:15%;
+    -webkit-transform: scale(0.9);
+    -moz-transform: scale(0.9);
+    transform: scale(0.9);
+    opacity: 0.0;
+}
+.x1 {
+    left: 15%;
+	top:50%;
+    -webkit-transform: scale(2.9);
+    -moz-transform: scale(2.9);
+    transform: scale(0.9);
+    opacity: 0.0;
 }
 
-.hero-unit {
-    position: relative;
-    padding: 30px 15px;
-    color: #F5F5F5;
-    text-align: center;
-    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
-    background: #4393B9;
+.x2 {
+    left: 85%;
+	top:50%;
+    -webkit-transform: scale(0.6);
+    -moz-transform: scale(0.6);
+    transform: scale(0.6);
+    opacity: 0.0;
+}
+.x3 {
+    left: 50%;
+	top:85%;
+    -webkit-transform: scale(0.8);
+    -moz-transform: scale(0.8);
+    transform: scale(0.8);
+    opacity: 0.0;
+}
+.x4 {
+    left: 25%;
+	top:25%;
+    -webkit-transform: scale(0.75);
+    -moz-transform: scale(0.75);
+    transform: scale(0.75);
+    opacity: 0.0;
+}
+.x5 {
+    left: 75%;
+	top:75%;
+    -webkit-transform: scale(0.8);
+    -moz-transform: scale(0.8);
+    transform: scale(0.8);
+    opacity: 0.0; 
+}
+.x6 {
+    left: 75%;
+	top:25%;
+    -webkit-transform: scale(0.8);
+    -moz-transform: scale(0.8);
+    transform: scale(0.8);
+    opacity: 0.0; 
+}
+.x7 {
+    left: 25%;
+	top:75%;
+    -webkit-transform: scale(0.8);
+    -moz-transform: scale(0.8);
+    transform: scale(0.8);
+    opacity: 0.0; 
+}
+.xProduct {
+    left: 35%;
+	top:50%;
+    -webkit-transform: scale(0.8);
+    -moz-transform: scale(0.8);
+    transform: scale(0.8);
+    opacity: 0.0; 
+}
+.xService {
+    left: 65%;
+	top:50%;
+    -webkit-transform: scale(0.8);
+    -moz-transform: scale(0.8);
+    transform: scale(0.8);
+    opacity: 0.0; 
 }
 
-.footer {
-    text-align: center;
-    padding: 30px 0;
-    margin-top: 70px;
-    border-top: 1px solid #E5E5E5;
-}
+

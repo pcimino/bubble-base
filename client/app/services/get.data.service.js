@@ -5,5 +5,11 @@ angular.module( 'bubbleBaseApp' ).factory( 'GetDataService', function($resource)
         isArray:true
       }
     } );
+}).factory( 'GetConceptsService', function($resource) {
+      return $resource( 'app/json/concepts.json', {}, {
+      query: {
+        method:'GET',
+        isArray:true
+      }
+    } );
 });
-

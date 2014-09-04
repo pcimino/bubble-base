@@ -13,3 +13,4 @@ angular.module('bubbleBaseApp', [
 
     $locationProvider.html5Mode(true);
   });
+  

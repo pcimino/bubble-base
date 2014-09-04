@@ -26,3 +26,4 @@ describe('Controller: ListCtrl', function () {
     expect(scope.awesomeThings.length).toBe(4);
   });
 });
+

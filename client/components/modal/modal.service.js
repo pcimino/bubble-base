@@ -27,7 +27,6 @@ angular.module('bubbleBaseApp')
 
       /* Confirmation modals */
       confirm: {
-
         /**
          * Create a function to open a delete confirmation modal (ex. ng-click='myModalFn(name, arg1, arg2...)')
          * @param  {Function} del - callback, ran when delete is confirmed

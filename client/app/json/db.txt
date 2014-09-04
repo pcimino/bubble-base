@@ -4,7 +4,7 @@ bizArray.businesses = [];
 bizArray.newBiz = function(name, street, city, state, phone, img, productCategory, serviceCategory) {
   this.businesses.push({name:name, street:street, city:city, state:state, phone:phone, img:img, productCategory:productCategory, serviceCategory:serviceCategory});
 };
-
+ 
 bizArray.getProductDisplay = function(productLevel) {
   var display = [];
   for (var bizCount in this.businesses) {

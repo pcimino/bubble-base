@@ -26,3 +26,4 @@ describe('Controller: StartCtrl', function () {
     expect(scope.awesomeThings.length).toBe(4);
   });
 });
+

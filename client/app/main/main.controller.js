@@ -1,11 +1,11 @@
 'use strict';
 
 angular.module('bubbleBaseApp')
-  .controller('MainCtrl', function ($scope, $http) {
-    $scope.concepts = [];
+  .controller('MainCtrl', function ($scope, $http, GetConceptsService) {
+    $scope.featuresList = [];
 
-    $http.get('/api/things').success(function(concepts) {
-      $scope.concepts = concepts;
-    });
+    GetConceptsService.get( function( database ) {
+        $scope.featuresList = database.data;
+        ggg = featuresList.data;
+    } );
   });
-

@@ -25,3 +25,4 @@ angular.module('bubbleBaseApp')
       return route === $location.path();
     };
   });
+ 

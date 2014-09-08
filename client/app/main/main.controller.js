@@ -6,6 +6,5 @@ angular.module('bubbleBaseApp')
 
     GetConceptsService.get( function( database ) {
         $scope.featuresList = database.data;
-        ggg = featuresList.data;
     } );
   });

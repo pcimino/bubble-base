@@ -1,13 +1,48 @@
+/* Helpful: http://www.css3maker.com/css3-animation.html */
+
 .thing-form {
     margin: 20px 0;
 }
 
+/* scale up */
+@keyframes scaleUp {
+	from 	{ opacity: 0.0; transform: scale(0); }
+  to 	{ opacity: 1.0; transform: scale(3); }
+}
+@-webkit-keyframes scaleUp {
+	from 	{ opacity: 0.0; -webkit-transform: scale(0); }
+  to 	{ opacity: 1.0; -webkit-transform: scale(3); }
+}
+@-moz-keyframes scaleUp {
+	from 	{ opacity: 0.0; -moz-transform: scale(0); }
+  to 	{ opacity: 1.0; -moz-transform: scale(3); }
+}
+
+/* scale up */
+@keyframes scaleDown {
+	from 	{ opacity: 1.0; transform: scale(3); }
+  to 	{ opacity: 0.0; transform: scale(0); }
+}
+@-webkit-keyframes scaleDown {
+	from 	{ opacity: 1.0; -webkit-transform: scale(3); }
+  to 	{ opacity: 0.0; -webkit-transform: scale(0); }
+}
+@-moz-keyframes scaleDown {
+	from 	{ opacity: 1.0; -moz-transform: scale(3); }
+  to 	{ opacity: 0.0; -moz-transform: scale(0); }
+}
+
+.show-bubble { -webkit-animation: scaleUp 1.5s both ease-in-out; -moz-animation: scaleUp 1.5s both ease-in-out; animation: scaleUp 1.5s both ease-in-out; z-index: 8888; }
+.hide-bubble { -webkit-animation: scaleDown 1.5s both ease-in-out; -moz-animation: scaleDown 1.5s both ease-in-out; animation: scaleDown 1.5s both ease-in-out; z-index: 9999; }
+
+
+
 html,
 body,
 body { overflow: hidden }
-#bubbles { 
+#bubbles {
   padding: 100px 0;
-  height: 100% 
+  height: 100%
 }
 
 .bubble {
@@ -18,100 +53,64 @@ body { overflow: hidden }
     -moz-border-radius: 200px;
     -webkit-border-radius: 200px;
     position: absolute;
-	font-family:"Times New Roman", Times, serif;
+	  font-family:"Times New Roman", Times, serif;
+    opacity: 0.0;
 }
 .font-center {
     text-align:center;
     background-color: #b0e0e6;
-	font-size:10%;
+	  font-size:10%;
 }
 p {
-    margin: 0; 
+    margin: 0;
     padding: 0;
 }
 .top-margin {
 	margin: 10% 0 0 0;
 }
 .x0 {
-    left: 50%;
-	top:15%;
-    -webkit-transform: scale(0.9);
-    -moz-transform: scale(0.9);
-    transform: scale(0.9);
-    opacity: 0.0;
+  left: 50%;
+	top:50%;
 }
 .x1 {
-    left: 15%;
+  left: 15%;
 	top:50%;
-    -webkit-transform: scale(2.9);
-    -moz-transform: scale(2.9);
-    transform: scale(0.9);
-    opacity: 0.0;
 }
 
 .x2 {
-    left: 85%;
+  left: 85%;
 	top:50%;
-    -webkit-transform: scale(0.6);
-    -moz-transform: scale(0.6);
-    transform: scale(0.6);
-    opacity: 0.0;
 }
 .x3 {
-    left: 50%;
+  left: 50%;
 	top:85%;
-    -webkit-transform: scale(0.8);
-    -moz-transform: scale(0.8);
-    transform: scale(0.8);
-    opacity: 0.0;
+  opacity: 0.0;
 }
 .x4 {
-    left: 25%;
+  left: 25%;
 	top:25%;
-    -webkit-transform: scale(0.75);
-    -moz-transform: scale(0.75);
-    transform: scale(0.75);
-    opacity: 0.0;
 }
 .x5 {
-    left: 75%;
+  left: 75%;
 	top:75%;
-    -webkit-transform: scale(0.8);
-    -moz-transform: scale(0.8);
-    transform: scale(0.8);
-    opacity: 0.0; 
+  opacity: 0.0;
 }
 .x6 {
-    left: 75%;
+  left: 75%;
 	top:25%;
-    -webkit-transform: scale(0.8);
-    -moz-transform: scale(0.8);
-    transform: scale(0.8);
-    opacity: 0.0; 
+  opacity: 0.0;
 }
 .x7 {
-    left: 25%;
+  left: 25%;
 	top:75%;
-    -webkit-transform: scale(0.8);
-    -moz-transform: scale(0.8);
-    transform: scale(0.8);
-    opacity: 0.0; 
 }
 .xProduct {
-    left: 35%;
+  left: 35%;
 	top:50%;
-    -webkit-transform: scale(0.8);
-    -moz-transform: scale(0.8);
-    transform: scale(0.8);
-    opacity: 0.0; 
 }
 .xService {
-    left: 65%;
+  left: 65%;
 	top:50%;
-    -webkit-transform: scale(0.8);
-    -moz-transform: scale(0.8);
-    transform: scale(0.8);
-    opacity: 0.0; 
 }
 
 

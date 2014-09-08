@@ -4,6 +4,7 @@ angular.module('bubbleBaseApp', [
   'ngCookies',
   'ngResource',
   'ngSanitize',
+  'ngAnimate',
   'ui.router',
   'ui.bootstrap'
 ])
@@ -13,4 +14,3 @@ angular.module('bubbleBaseApp', [
 
     $locationProvider.html5Mode(true);
   });
-  

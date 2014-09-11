@@ -1,8 +1,9 @@
 {
   "data": [
-{ 
+{
   "businesses": [
         {
+          "id": "x0",
           "name": "Bob the Builder",
           "street": "1 Main St.",
           "city": "Oklahoma",
@@ -22,11 +23,12 @@
           ]
         },
         {
+          "id": "x1",
           "name": "Dora the Explorer",
-          "street": "Pikes Peak Pike National Forest",
+          "street": "Pikes Peak National Forest",
           "city": "Pikes Peak",
           "state": "CO",
-          "phone": "(202) 456-1111",
+          "phone": "",
           "img": "dora.png",
           "productCategory": [
             "Maps",
@@ -39,6 +41,7 @@
           ]
         },
         {
+          "id": "x2",
           "name": "Encyclopedia Brown",
           "street": "52 Wagon Ave.",
           "city": "Chester",
@@ -52,6 +55,7 @@
           ]
         },
         {
+          "id": "x3",
           "name": "Mystery, Inc.",
           "street": "52 Mystery Ave.",
           "city": "Albuquerque",

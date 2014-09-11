@@ -1,5 +1,5 @@
 'use strict';
-
+var ggg = {};
 /* TODO
     Color of the bubbles should be derived: Choose light for the intial and then progressivle darker for each level
     Position of bubbles should be dynamic, not defining bubbles and fixed div
@@ -20,13 +20,15 @@ angular.module('bubbleBaseApp')
         $scope.hideAllBubbles();
         $scope.showBubble('xService');
         $scope.showBubble('xProduct');
+      ggg = $scope.serviceLevel
+        $scope.setupServiceLevel();
     } );
 
     $scope.hideAllBubbles = function() {
       // can't simply call hide on class 'bubble' because it will show the bubbles prior to hiding
       // so for each 'bubble' determine if it's visible, then hide
       $('.bubble').each(function() {
-        if ($(this).is(':visible')) {
+        if ($(this).attr("class").toString().indexOf("show-bubble") >= 0) {
           $(this).addClass("hide-bubble");
         }
       });
@@ -42,15 +44,25 @@ angular.module('bubbleBaseApp')
       element.addClass("hide-bubble");
     }
 
-    $scope.setupServiceLevel = function(level) {
-      var returnArray = [];
-      for (var j in $scope.businesses) {
-        var cat = $scope.businesses[j].serviceCategory[level];
-        if (cat) {
-          returnArray.push({category:cat, business: $scope.businesses[j]});
+    // Pretty much wrong, setting up bubbles and data statically
+    // in the real world bubbles would be rendered as needed
+    // and each click would run a search
+    $scope.setupServiceLevel = function() {
+      for (var i in $scope.businesses) {
+        for (var j in $scope.businesses[i].serviceCategory) {
+          var cat = $scope.businesses[i].serviceCategory[j];
+          if ($scope.serviceLevel[j] === undefined) $scope.serviceLevel.push({'categories':[]});
+
+          var catLevel = $scope.serviceLevel[j].categories[cat];
+          if (catLevel === undefined) {
+            catLevel = {'cat':cat, 'bus':[]};
+            $scope.serviceLevel[j].categories.push(catLevel);
+          }
+          if (j == $scope.businesses[i].serviceCategory.length-1) {
+            catLevel.bus.push($scope.businesses[i]);
+          }
         }
       }
-      $scope.services = returnArray;
     }
     $scope.setupProductLevel = function(level) {
       var returnArray = [];

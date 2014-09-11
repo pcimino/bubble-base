@@ -7,24 +7,29 @@
 </header>
 
 <div id="bubbles">
+    <div class="bubble xProduct"><p class="bubble-title">Products<p></div>
+    <div class="bubble xService"><p class="bubble-title">Services<p></div>
+
         <div class="bubble x0 font-center">
 			<img class='top-margin' src="http://translunardesigns.com/img/LogoColor_128_97.png"  height="25%" width="45%">
 			<p class='top-margin'>Text</p><p>Some more text</p><p>Some more text</p>
 		</div>
-        <div class="bubble x1"></div>
-        <div class="bubble x2"></div>
-        <div class="bubble x3"></div>
-        <div class="bubble x4"></div>
-        <div class="bubble x5"></div>
-        <div class="bubble x6"></div>
-        <div class="bubble x7"></div>
-        <div class="bubble xProduct"></div>
-        <div class="bubble xService"></div>
+    <div ng-repeat="business in businesses">
+        <div class="bubble {{business.id}} font-center" >
+            <img class='top-margin' src="http://translunardesigns.com/img/LogoColor_128_97.png"  height="25%" width="45%">
+            <p>{{business.name}}</p>
+            <p>{{business.street}}</p>
+            <p>{{business.city}}, {{business.state}}</p>
+            <p>{{business.phone}}</p>
+        </div>
+    </div>
+
+
 </div>
 
 <div>
-    <button ng-click="showBubble('x0')">Show</button>
-    <button ng-click="hideBubble('x0')">Hide</button>
+    <button ng-click="showBubble('x0');showBubble('x1');showBubble('x2');showBubble('x3');">Show</button>
+    <button ng-click="hideAllBubbles()">Hide</button>
 </div>
 
 <div>

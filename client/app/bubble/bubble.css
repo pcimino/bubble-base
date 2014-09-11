@@ -56,10 +56,15 @@ body { overflow: hidden }
 	  font-family:"Times New Roman", Times, serif;
     opacity: 0.0;
 }
+.bubble-title {
+    text-align:center;
+    padding: 35% 0 0 0;
+	  font-size:80%;
+}
 .font-center {
     text-align:center;
     background-color: #b0e0e6;
-	  font-size:10%;
+	  font-size:40%;
 }
 p {
     margin: 0;
@@ -69,40 +74,54 @@ p {
 	margin: 10% 0 0 0;
 }
 .x0 {
-  left: 50%;
-	top:50%;
+  left: 40%;
+	top:40%;
 }
 .x1 {
-  left: 15%;
-	top:50%;
+  left: 25%;
+	top:40%;
 }
 
 .x2 {
-  left: 85%;
-	top:50%;
+  left: 75%;
+	top:40%;
 }
 .x3 {
-  left: 50%;
-	top:85%;
+  left: 40%;
+	top:75%;
   opacity: 0.0;
 }
 .x4 {
-  left: 25%;
-	top:25%;
+  left: 35%;
+	top:35%;
 }
-.x5 {
-  left: 75%;
-	top:75%;
+.serviceLevel1 {
+  left: 65%;
+	top:65%;
   opacity: 0.0;
 }
-.x6 {
-  left: 75%;
-	top:25%;
+.serviceLevel2 {
+  left: 65%;
+	top:35%;
   opacity: 0.0;
 }
-.x7 {
-  left: 25%;
-	top:75%;
+.serviceLevel3 {
+  left: 35%;
+	top:65%;
+}
+.productLevel1 {
+  left: 65%;
+	top:65%;
+  opacity: 0.0;
+}
+.productLevel2 {
+  left: 65%;
+	top:35%;
+  opacity: 0.0;
+}
+.prodLevel3 {
+  left: 35%;
+	top:65%;
 }
 .xProduct {
   left: 35%;

@@ -26,4 +26,3 @@ describe('Controller: BubbleCtrl', function () {
     expect(scope.awesomeThings.length).toBe(4);
   });
 });
-

@@ -48,7 +48,6 @@ body { overflow: hidden }
 .bubble {
     width: 60px;
     height: 60px;
-    background: #ffb200;
     border-radius: 200px;
     -moz-border-radius: 200px;
     -webkit-border-radius: 200px;
@@ -56,10 +55,37 @@ body { overflow: hidden }
 	  font-family:"Times New Roman", Times, serif;
     opacity: 0.0;
 }
+.small-bubble {
+    width: 60px;
+    height: 40px;
+    border-radius: 150px;
+    -moz-border-radius: 150px;
+    -webkit-border-radius: 150px;
+    position: absolute;
+	  font-family:"Times New Roman", Times, serif;
+    opacity: 1.0;
+}
 .bubble-title {
     text-align:center;
     padding: 35% 0 0 0;
 	  font-size:80%;
+    color:'black';
+}.small-bubble-title {
+    text-align:center;
+    padding: 12% 0 0 0;
+	  font-size:120%;
+    color:'black';
+}
+.bubble-category{
+    text-align:center;
+    padding: 30% 0 0 0;
+	  font-size:55%;
+}
+.bubble-provider-text {
+  color:#A9F5F2;
+}
+.bubble-category-text {
+  color:white;
 }
 .font-center {
     text-align:center;
@@ -74,62 +100,70 @@ p {
 	margin: 10% 0 0 0;
 }
 .x0 {
-  left: 40%;
-	top:40%;
+  left: 50%;
+	top:30%;
 }
 .x1 {
   left: 25%;
-	top:40%;
+	top:30%;
 }
 
 .x2 {
   left: 75%;
-	top:40%;
+	top:30%;
 }
 .x3 {
   left: 40%;
-	top:75%;
+	top:65%;
   opacity: 0.0;
 }
 .x4 {
-  left: 35%;
-	top:35%;
+  left: 65%;
+	top:65%;
 }
 .serviceLevel1 {
   left: 65%;
-	top:65%;
+	top:55%;
   opacity: 0.0;
 }
 .serviceLevel2 {
   left: 65%;
-	top:35%;
+	top:25%;
   opacity: 0.0;
 }
 .serviceLevel3 {
   left: 35%;
-	top:65%;
+	top:55%;
 }
 .productLevel1 {
   left: 65%;
-	top:65%;
+	top:55%;
   opacity: 0.0;
 }
 .productLevel2 {
   left: 65%;
-	top:35%;
+	top:25%;
   opacity: 0.0;
 }
-.prodLevel3 {
+.productLevel3 {
   left: 35%;
-	top:65%;
+	top:55%;
 }
 .xProduct {
   left: 35%;
-	top:50%;
+	top:40%;
 }
 .xService {
   left: 65%;
-	top:50%;
+	top:40%;
+}
+.xBack {
+  left: 35%;
+	top:90%;
+}
+.xReset {
+  left: 65%;
+	top:90%;
 }
 
 

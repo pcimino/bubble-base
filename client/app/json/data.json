@@ -10,6 +10,8 @@
           "state": "OK",
           "phone": "(800) 555-1212",
           "img": "bob.png",
+          "imgHeight": "50%",
+          "imgWidth": "50%",
           "productCategory": [
             "Construction",
             "Buildings",
@@ -25,11 +27,13 @@
         {
           "id": "x1",
           "name": "Dora the Explorer",
-          "street": "Pikes Peak National Forest",
+          "street": "Boots Lane",
           "city": "Pikes Peak",
           "state": "CO",
-          "phone": "",
+          "phone": "(800) EXPLORE",
           "img": "dora.png",
+          "imgHeight": "50%",
+          "imgWidth": "55%",
           "productCategory": [
             "Maps",
             "Geodedic Survey Maps & Data"
@@ -43,15 +47,16 @@
         {
           "id": "x2",
           "name": "Encyclopedia Brown",
-          "street": "52 Wagon Ave.",
+          "street": "13 Rover Ave.",
           "city": "Chester",
           "state": "NY",
-          "phone": "(212) 867-5309",
-          "img": "brown.png",
+          "phone": "(212) 555-5309",
+          "img": "browndetective.png",
+          "imgHeight": "20%",
+          "imgWidth": "50%",
           "productCategory": [],
           "serviceCategory": [
-            "Investigative Services",
-            "25 cents per day, plus expenses - No case too small."
+            "Investigative Services"
           ]
         },
         {
@@ -62,10 +67,26 @@
           "state": "NM",
           "phone": "(505) MYS-TERY",
           "img": "scooby.png",
+          "imgHeight": "50%",
+          "imgWidth": "50%",
           "productCategory": [],
           "serviceCategory": [
-            "Investigative Services",
-            "K-9 Investigations"
+            "Investigative Services"
+          ]
+        },
+        {
+          "id": "x4",
+          "name": "Venture Industries",
+          "street": "1 Venture Blvd.",
+          "city": "Taos",
+          "state": "NM",
+          "phone": "(900) SCIENCE",
+          "img": "venture.png",
+          "imgHeight": "50%",
+          "imgWidth": "50%",
+          "productCategory": ["Robotics"],
+          "serviceCategory": [
+            "Technology Consulting"
           ]
         }
       ]

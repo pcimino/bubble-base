@@ -7,22 +7,21 @@
 </header>
 
 <div id="bubbles">
-    <div class="bubble xProduct" ng-style='{{greenStyle[0]}}'><p class="bubble-title">Products<p></div>
-    <div class="bubble xService" ng-style='{{blueStyle[0]}}'><p class="bubble-title">Services<p></div>
-    <div class="small-bubble xBack" ng-style='{{greenStyle[0]}}'><p class="small-bubble-title">Back<p></div>
-    <div class="small-bubble xReset" ng-click='setupDisplay(-1, false, false);' ng-style='{{blueStyle[0]}}'><p class="small-bubble-title">Reset<p></div>
-
+    <div class="bubble xProduct" ng-click="setupDisplay(0, true, false);" ng-style='{{greenStyle[0]}}'><p class="bubble-title">Products<p></div>
+    <div class="bubble xService" ng-click="setupDisplay(0, false, true);" ng-style='{{blueStyle[0]}}'><p class="bubble-title">Services<p></div>
+    <div class="small-bubble xBack" ng-click="lessDetail();" ng-style='{{greenStyle[0]}}'><p class="small-bubble-title">Back<p></div>
+    <div class="small-bubble xReset" ng-click="setupDisplay(-1, false, false);" ng-style='{{blueStyle[0]}}'><p class="small-bubble-title">Reset<p></div>
 
     <div ng-repeat="cat in serviceLevelCat">
-        <div class="bubble x{{cat.level}} bubble-category-text" ng-style='{{blueStyle[cat.level]}}'><p class="bubble-category">{{cat.cat}}<p></div>
+        <div class="bubble show-bubble serviceLevel{{$index}} bubble-category-text" ng-style='{{blueStyle[$index+1]}}'><p class="bubble-category">{{cat}}<p></div>
     </div>
     <div ng-repeat="cat in productLevelCat">
-        <div class="bubble x{{cat.level}} bubble-category-text" ng-style='{{greenStyle[cat.level]}}'><p class="bubble-category">{{cat.cat}}<p></div>
+        <div class="bubble show-bubble productLevel{{$index}} bubble-category-text" ng-style='{{greenStyle[$index+1]}}'><p class="bubble-category">{{cat}}<p></div>
     </div>
 
 
     <div ng-repeat="business in serviceLevelBus">
-        <div class="bubble {{business.bus.id}} font-center bubble-provider-text" ng-style='{{greenStyle[$index+1]}}'>
+        <div class="bubble s{{$index}} font-center bubble-provider-text" ng-style='{{greenStyle[$index+1]}}'>
             <img class='top-margin' src="/assets/images/{{business.bus.img}}"  height="{{business.bus.imgHeight}}" width="{{business.bus.imgWidth}}">
             <p>{{business.bus.name}}</p>
             <p>{{business.bus.phone}}</p>
@@ -30,7 +29,7 @@
     </div>
 
     <div ng-repeat="business in productLevelBus">
-        <div class="bubble {{business.bus.id}} font-center bubble-provider-text" ng-style='{{blueStyle[$index+1]}}'>
+        <div class="bubble p{{$index}} font-center bubble-provider-text" ng-style='{{blueStyle[$index+1]}}'>
             <img class='top-margin' src="/assets/images/{{business.bus.img}}"  height="{{business.bus.imgHeight}}" width="{{business.bus.imgWidth}}">
             <p>{{business.bus.name}}</p>
           <!--  <p>{{business.bus.street}}</p>
@@ -42,7 +41,7 @@
 </div>
 
 <div>
-    <button ng-click="showBubble('x0');showBubble('x1');showBubble('x2');showBubble('x3');showBubble('x4');">Show</button>
+    <button ng-click="showBubble('x0');showBubble('x1');showBubble('x2');showBubble('x3');showBubble('serviceLevel0');">Show</button>
     <button ng-click="hideAllBubbles()">Hide</button>
 </div>
 

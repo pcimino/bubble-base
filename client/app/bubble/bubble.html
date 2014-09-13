@@ -13,10 +13,10 @@
     <div class="small-bubble xReset" ng-click="setupDisplay(-1, false, false);" ng-style='{{blueStyle[0]}}'><p class="small-bubble-title">Reset<p></div>
 
     <div ng-repeat="cat in serviceLevelCat">
-        <div class="bubble show-bubble serviceLevel{{$index}} bubble-category-text" ng-style='{{blueStyle[$index+1]}}'><p class="bubble-category">{{cat}}<p></div>
+        <div class="bubble show-bubble serviceLevel{{$index}} bubble-category-text" ng-click="moreDetail(cat);" ng-style='{{blueStyle[$index+1]}}'><p class="bubble-category">{{cat}}<p></div>
     </div>
     <div ng-repeat="cat in productLevelCat">
-        <div class="bubble show-bubble productLevel{{$index}} bubble-category-text" ng-style='{{greenStyle[$index+1]}}'><p class="bubble-category">{{cat}}<p></div>
+        <div class="bubble show-bubble productLevel{{$index}} bubble-category-text" ng-click="moreDetail(cat);" ng-style='{{greenStyle[$index+1]}}'><p class="bubble-category">{{cat}}<p></div>
     </div>
 
 

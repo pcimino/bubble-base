@@ -16,6 +16,9 @@ angular.module('bubbleBaseApp')
     $scope.lessDetail = function() {
       $scope.setupDisplay($rootScope.currentLevel-1, $rootScope.displayProducts, $rootScope.displayServices);
     }
+    $scope.moreDetail = function(category) {
+      $scope.setupDisplay($rootScope.currentLevel+1, $rootScope.displayProducts, $rootScope.displayServices, category);
+    }
 
 
     $scope.hideAllBubbles = function() {
@@ -28,7 +31,6 @@ angular.module('bubbleBaseApp')
       });
     }
     $scope.showBubble = function(bubbleClass) {
-      console.log(bubbleClass)
       var element = $('.' + bubbleClass);
       element.removeClass("hide-bubble");
       element.addClass("show-bubble");
@@ -49,55 +51,6 @@ angular.module('bubbleBaseApp')
       return undefined;
     }
 
-    // Pretty much wrong, setting up bubbles and data statically
-    // in the real world bubbles would be rendered as needed
-    // and each click would run a search
-    // flattening the data so only need one ng-repeat
-    $scope.setupServiceLevel = function() {
-      // businesses persisted in address book
-      var businessList = StorageService.getAddressBook();
-      var serviceTree = [];
-      for (var k = 0; k < 15; k++) serviceTree.push({'cat':[], 'bus':[] });
-      for (var i in $rootScope.businesses) {
-        for (var j in $rootScope.businesses[i].serviceCategory) {
-          if (!arrayHas(serviceTree[j].cat, $rootScope.businesses[i].serviceCategory[j])) {
-            serviceTree[j].cat.push($rootScope.businesses[i].serviceCategory[j]);
-          }
-        }
-        var category = $rootScope.businesses[i].serviceCategory[j];
-        $rootScope.businesses[i].lastServiceCat = category;
-        j++;
-        serviceTree[j].bus.push($rootScope.businesses[i]);
-      }
-
-      $rootScope.serviceTree = serviceTree;
-    }
-    $scope.setupProductLevel = function(level) {
-     // businesses persisted in address book
-      var businessList = StorageService.getAddressBook();
-      var productTree = [];
-      for (var k = 0; k < 15; k++) productTree.push({'cat':[], 'bus':[] });
-      for (var i in $rootScope.businesses) {
-        for (var j in $rootScope.businesses[i].productCategory) {
-          if (!arrayHas(productTree[j].cat, $rootScope.businesses[i].productCategory[j])) {
-            productTree[j].cat.push($rootScope.businesses[i].productCategory[j]);
-          }
-        }
-        var category = $rootScope.businesses[i].productCategory[j];
-        $rootScope.businesses[i].lastServiceCat = category;
-        j++;
-        productTree[j].bus.push($rootScope.businesses[i]);
-      }
-
-      $rootScope.productTree = productTree;
-    }
-
-    var isInList = function(businessList, business) {
-      for (var i in businessList) {
-        if (businessList[i].id === business.id) return true;
-      }
-      return false;
-    }
 
 
     if (undefined === $rootScope.currentLevel) $rootScope.currentLevel = -1
@@ -121,13 +74,10 @@ angular.module('bubbleBaseApp')
       }
       GetDataService.get( function( database ) {
           $rootScope.businesses = database.data[0].businesses;
-          $scope.setupServiceLevel();
-          $scope.setupProductLevel();
       } );
     }
-    $scope.setupDisplay = function(level, products, services) {
+    $scope.setupDisplay = function(level, products, services, category) {
       var displayClass = [];
-
       $rootScope.currentLevel = level;
       if (level === -1) {
           $scope.hideAllBubbles();
@@ -139,34 +89,67 @@ angular.module('bubbleBaseApp')
         $scope.showBubble('small-bubble');
         $rootScope.displayProducts = products;
         $rootScope.displayServices = services;
+        $rootScope.productLevelBus = [];
+        $rootScope.productLevelCat = [];
+        $rootScope.serviceLevelBus = [];
+        $rootScope.serviceLevelCat = [];
 
         if (products) {
-          $rootScope.productLevelBus = [];
-          $rootScope.productLevelCat = $rootScope.productTree[level].cat;
-
-          for (var i in $rootScope.productTree[level+1].bus) {
-            if (arrayHas($rootScope.productLevelCat, $rootScope.productTree[level+1].bus[i])) {
-              $rootScope.productLevelBus.push($rootScope.productTree[level+1].bus[i]);
-              displayClass.push('p'+i);
+          for (var i in $rootScope.businesses) {
+            for (var j in $rootScope.businesses[i].productCategory) {
+              if ($rootScope.businesses[i].productCategory[level]) {
+                if (category) {
+                  if (category === $rootScope.businesses[i].productCategory[level-1]) {
+                    if ($rootScope.businesses[i].productCategory[level]) {
+                      if (!arrayHas($rootScope.productLevelCat, $rootScope.businesses[i].productCategory[level])) {
+                        $rootScope.productLevelCat.push($rootScope.businesses[i].productCategory[level]);
+                        displayClass.push('productLevel'+i);
+                      }
+                    }
+                  }
+                } else {
+                  if (!arrayHas($rootScope.productLevelCat, $rootScope.businesses[i].productCategory[level])) {
+                    $rootScope.productLevelCat.push($rootScope.businesses[i].productCategory[level]);
+                    displayClass.push('productLevel'+i);
+                  }
+                }
+                if (level === $rootScope.businesses[i].productCategory.length+1) {
+                  $rootScope.productLevelBus.push($rootScope.businesses[i]);
+                  displayClass.push('p'+i);
+                }
+              }
             }
-          }
-          for (var i in $rootScope.productLevelCat) {
-            displayClass.push('productLevel'+i);
           }
         } else if (services) {
-          $rootScope.serviceLevelBus = [];
-          $rootScope.serviceLevelCat = $rootScope.serviceTree[level].cat;
-          for (var i in $rootScope.serviceTree[level+1].bus) {
-            if (arrayHas($rootScope.serviceLevelCat, $rootScope.serviceTree[level+1].bus[i].lastServiceCat)) {
-              $rootScope.serviceLevelBus.push($rootScope.serviceTree[level+1].bus[i]);
-              displayClass.push('s'+i);
+          for (var i in $rootScope.businesses) {
+            for (var j in $rootScope.businesses[i].serviceCategory) {
+              if ($rootScope.businesses[i].serviceCategory[level]) {
+                if (category) {
+                  if (category === $rootScope.businesses[i].serviceCategory[level-1]) {
+                    if ($rootScope.businesses[i].serviceCategory[level]) {
+                      if (!arrayHas($rootScope.serviceLevelCat, $rootScope.businesses[i].serviceCategory[level])) {
+                        $rootScope.serviceLevelCat.push($rootScope.businesses[i].serviceCategory[level]);
+                        displayClass.push('serviceLevel'+i);
+                      }
+                    }
+                  }
+                } else {
+                  if (!arrayHas($rootScope.serviceLevelCat, $rootScope.businesses[i].serviceCategory[level])) {
+                    $rootScope.serviceLevelCat.push($rootScope.businesses[i].serviceCategory[level]);
+                    displayClass.push('serviceLevel'+i);
+                  }
+                }
+                if (level === $rootScope.businesses[i].serviceCategory.length+1) {
+                  $rootScope.serviceLevelBus.push($rootScope.businesses[i]);
+                  displayClass.push('p'+i);
+                }
+              }
             }
           }
-          for (var i in $rootScope.serviceLevelCat) {
-            displayClass.push('serviceLevel'+i);
-          }
         }
-
+ggg.bus=$rootScope.serviceLevelBus
+ggg.cat = $rootScope.serviceLevelCat
+ggg.displ = displayClass
         for (var i in displayClass) {
           $scope.showBubble(displayClass[i]);
         }

@@ -1,5 +1,5 @@
 'use strict';
-var ggg = {};
+
 /* TODO
     Color of the bubbles should be derived: Choose light for the intial and then progressivle darker for each level
     Position of bubbles should be dynamic, not defining bubbles and fixed div
@@ -141,15 +141,12 @@ angular.module('bubbleBaseApp')
                 }
                 if (level === $rootScope.businesses[i].serviceCategory.length+1) {
                   $rootScope.serviceLevelBus.push($rootScope.businesses[i]);
-                  displayClass.push('p'+i);
+                  displayClass.push('s'+i);
                 }
               }
             }
           }
         }
-ggg.bus=$rootScope.serviceLevelBus
-ggg.cat = $rootScope.serviceLevelCat
-ggg.displ = displayClass
         for (var i in displayClass) {
           $scope.showBubble(displayClass[i]);
         }

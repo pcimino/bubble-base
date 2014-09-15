@@ -5,8 +5,9 @@
     Position of bubbles should be dynamic, not defining bubbles and fixed div
 */
 angular.module('bubbleBaseApp')
-  .controller('BubbleCtrl', function ($scope, $rootScope, GetDataService, StorageService) {
+  .controller('BubbleCtrl', function ($scope, $rootScope, StorageService, DatabaseService) {
 
+    DatabaseService.initializeDatabase();
     var blueRange = ['CCD6F5', '99ADEB', '6685E0', '335CD6', '0033CC'];
     var redRange = ['FFCCCC', 'FFB2B2', 'FF9999', 'FF8080', 'FF6666', 'FF4D4D', 'FF3333', 'FF1919', 'FF0000'];
     var greenRange = ['01DF01', '04B404', '088A08', '0B610B', '0B3B0B', '003300'];
@@ -51,8 +52,6 @@ angular.module('bubbleBaseApp')
       return undefined;
     }
 
-
-
     if (undefined === $rootScope.currentLevel) $rootScope.currentLevel = -1
     if (-1 === $rootScope.currentLevel) {
       $rootScope.serviceTree = [];
@@ -72,13 +71,10 @@ angular.module('bubbleBaseApp')
       for (var i in blueRange) {
         $rootScope.blueStyle.push({"background": '#'+blueRange[i] });
       }
-      GetDataService.get( function( database ) {
-          $rootScope.businesses = database.data[0].businesses;
-      } );
     }
     $scope.setupDisplay = function(level, products, services, category) {
       var displayClass = [];
-      $rootScope.currentLevel = level;
+   //   $rootScope.currentLevel = level;
       if (level === -1) {
           $scope.hideAllBubbles();
           $scope.showBubble('xService');
@@ -95,31 +91,19 @@ angular.module('bubbleBaseApp')
         $rootScope.serviceLevelCat = [];
 
         if (products) {
-          for (var i in $rootScope.businesses) {
-            for (var j in $rootScope.businesses[i].productCategory) {
-              if ($rootScope.businesses[i].productCategory[level]) {
-                if (category) {
-                  if (category === $rootScope.businesses[i].productCategory[level-1]) {
-                    if ($rootScope.businesses[i].productCategory[level]) {
-                      if (!arrayHas($rootScope.productLevelCat, $rootScope.businesses[i].productCategory[level])) {
-                        $rootScope.productLevelCat.push($rootScope.businesses[i].productCategory[level]);
-                        displayClass.push('productLevel'+i);
-                      }
-                    }
-                  }
-                } else {
-                  if (!arrayHas($rootScope.productLevelCat, $rootScope.businesses[i].productCategory[level])) {
-                    $rootScope.productLevelCat.push($rootScope.businesses[i].productCategory[level]);
-                    displayClass.push('productLevel'+i);
-                  }
-                }
-                if (level === $rootScope.businesses[i].productCategory.length+1) {
-                  $rootScope.productLevelBus.push($rootScope.businesses[i]);
-                  displayClass.push('p'+i);
-                }
-              }
-            }
+          var results = DatabaseService.moreDetail('Products');
+          console.log('cat '  + ':' + JSON.stringify(results))
+          for (var i in results.cat) {
+            console.log('cat ' + i + ':' + JSON.stringify(results))
+            $rootScope.productLevelCat.push($rootScope.businesses[i].productCategory[level]);
+            displayClass.push('productLevel'+i);
           }
+          for (var i in results.bus) {
+            console.log('bus ' + i + ':' + JSON.stringify(results))
+            $rootScope.productLevelBus.push(results.bus[i]);
+            displayClass.push('p'+i);
+          }
+
         } else if (services) {
           for (var i in $rootScope.businesses) {
             for (var j in $rootScope.businesses[i].serviceCategory) {
@@ -155,4 +139,5 @@ angular.module('bubbleBaseApp')
 
     $scope.setupDisplay($rootScope.currentLevel);
   });
+
 

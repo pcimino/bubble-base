@@ -35,8 +35,6 @@
 .show-bubble { -webkit-animation: scaleUp 1.5s both ease-in-out; -moz-animation: scaleUp 1.5s both ease-in-out; animation: scaleUp 1.5s both ease-in-out; z-index: 8888; }
 .hide-bubble { -webkit-animation: scaleDown 1.5s both ease-in-out; -moz-animation: scaleDown 1.5s both ease-in-out; animation: scaleDown 1.5s both ease-in-out; z-index: 9999; }
 
-
-
 html,
 body,
 body { overflow: hidden }
@@ -48,18 +46,18 @@ body { overflow: hidden }
 .bubble {
     width: 60px;
     height: 60px;
-    border-radius: 200px;
-    -moz-border-radius: 200px;
-    -webkit-border-radius: 200px;
+    border-radius: 100px;
+    -moz-border-radius: 100px;
+    -webkit-border-radius: 100px;
     position: absolute;
 	  font-family:"Times New Roman", Times, serif;
 }
 .small-bubble {
-    width: 50px;
-    height: 30px;
-    border-radius: 150px;
-    -moz-border-radius: 150px;
-    -webkit-border-radius: 150px;
+    width: 35px;
+    height: 20px;
+    border-radius: 50px;
+    -moz-border-radius: 50px;
+    -webkit-border-radius: 50px;
     position: absolute;
 	  font-family:"Times New Roman", Times, serif;
     opacity: 1.0;
@@ -71,8 +69,8 @@ body { overflow: hidden }
     color:'black';
 }.small-bubble-title {
     text-align:center;
-    padding: 12% 0 0 0;
-	  font-size:100%;
+    padding: 8% 0 0 0;
+	  font-size:80%;
     color:'black';
 }
 .bubble-category{
@@ -207,5 +205,6 @@ p {
   left: 65%;
 	top:90%;
 }
+
 
 

@@ -80,6 +80,7 @@ angular.module('bubbleBaseApp')
           $scope.showBubble('xService');
           $scope.showBubble('xProduct');
           $scope.hideBubble('small-bubble');
+          category = '';
       } else {
         $scope.hideAllBubbles();
         $scope.showBubble('small-bubble');
@@ -91,44 +92,24 @@ angular.module('bubbleBaseApp')
         $rootScope.serviceLevelCat = [];
 
         if (products) {
-          var results = DatabaseService.moreDetail('Products');
-          console.log('cat '  + ':' + JSON.stringify(results))
+          var results = DatabaseService.moreDetail(category);
           for (var i in results.cat) {
-            console.log('cat ' + i + ':' + JSON.stringify(results))
-            $rootScope.productLevelCat.push($rootScope.businesses[i].productCategory[level]);
+            $rootScope.productLevelCat.push(results.cat[i]);
             displayClass.push('productLevel'+i);
           }
           for (var i in results.bus) {
-            console.log('bus ' + i + ':' + JSON.stringify(results))
             $rootScope.productLevelBus.push(results.bus[i]);
             displayClass.push('p'+i);
           }
-
         } else if (services) {
-          for (var i in $rootScope.businesses) {
-            for (var j in $rootScope.businesses[i].serviceCategory) {
-              if ($rootScope.businesses[i].serviceCategory[level]) {
-                if (category) {
-                  if (category === $rootScope.businesses[i].serviceCategory[level-1]) {
-                    if ($rootScope.businesses[i].serviceCategory[level]) {
-                      if (!arrayHas($rootScope.serviceLevelCat, $rootScope.businesses[i].serviceCategory[level])) {
-                        $rootScope.serviceLevelCat.push($rootScope.businesses[i].serviceCategory[level]);
-                        displayClass.push('serviceLevel'+i);
-                      }
-                    }
-                  }
-                } else {
-                  if (!arrayHas($rootScope.serviceLevelCat, $rootScope.businesses[i].serviceCategory[level])) {
-                    $rootScope.serviceLevelCat.push($rootScope.businesses[i].serviceCategory[level]);
-                    displayClass.push('serviceLevel'+i);
-                  }
-                }
-                if (level === $rootScope.businesses[i].serviceCategory.length+1) {
-                  $rootScope.serviceLevelBus.push($rootScope.businesses[i]);
-                  displayClass.push('s'+i);
-                }
-              }
-            }
+          var results = DatabaseService.moreDetail(category);
+          for (var i in results.cat) {
+            $rootScope.serviceLevelCat.push(results.cat[i]);
+            displayClass.push('serviceLevel'+i);
+          }
+          for (var i in results.bus) {
+            $rootScope.serviceLevelBus.push(results.bus[i]);
+            displayClass.push('s'+i);
           }
         }
         for (var i in displayClass) {
@@ -139,5 +120,7 @@ angular.module('bubbleBaseApp')
 
     $scope.setupDisplay($rootScope.currentLevel);
   });
+
+
 
 

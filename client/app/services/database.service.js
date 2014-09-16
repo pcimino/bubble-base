@@ -41,31 +41,32 @@ angular.module('bubbleBaseApp').service('DatabaseService',
       }
       $rootScope.currentLevel++;
       var level = $rootScope.currentLevel;
-console.log('Level ' + level + ' cat ' + currentCategory + ' productflag ' + $rootScope.productFlag)
       // the complexity comes from the fact that I want to handle multiple businesses under the same category, otherwise
       // drilling down into a heirarchy is pointless, everything would just be one level down
-      if ($rootScope.productFlag) {
-        for (var i in $rootScope.businesses) {
- console.log(' i ' + i)
-          for (var j in $rootScope.businesses[i].productCategory) {
-            if ($rootScope.businesses[i].productCategory[level]) {
-              var pushFlag = false;
-              if (level > 0 && currentCategory === $rootScope.businesses[i].productCategory[level-1]) {
-                  pushFlag = true;
-              } else if (level === 0) {
-                  pushFlag = true;
-              }
-              if (pushFlag && !arrayHas(returnVal.cat, $rootScope.businesses[i].productCategory[level])) {
-                returnVal.cat.push($rootScope.businesses[i].productCategory[level]);
-              }
-            }
-          }
-          if (level > 0 && level === $rootScope.businesses[i].productCategory.length && currentCategory === $rootScope.businesses[i].productCategory[level-1]) {
-            returnVal.bus.push($rootScope.businesses[i]);
-          }
+
+      for (var i in $rootScope.businesses) {
+        var business = $rootScope.businesses[i];
+        var categoryArray = business.serviceCategory;
+        if ($rootScope.productFlag) {
+          categoryArray = business.productCategory;
         }
-      } else {
+        if (categoryArray[level]) {
+          var pushFlag = false;
+          if (level > 0 && currentCategory === categoryArray[level-1]) {
+            pushFlag = true;
+          } else if (level === 0) {
+            pushFlag = true;
+          }
+          if (pushFlag && !arrayHas(returnVal.cat, categoryArray[level])) {
+            returnVal.cat.push(categoryArray[level]);
+          }
+
+        }
+        if (level > 0 && level === categoryArray.length && currentCategory === categoryArray[level-1]) {
+          returnVal.bus.push(business);
+        }
       }
+
       return returnVal;
     };
 
@@ -73,5 +74,7 @@ console.log('Level ' + level + ' cat ' + currentCategory + ' productflag ' + $ro
     };
 
   });
+
+
 
 

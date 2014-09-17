@@ -5,21 +5,32 @@
 
     initializeDatabase : Hmm, a bit kludgey. remember the concept here isn't about data storage/retrieval, but the presentation
 
+    moreDetail : Walk the tree for more details
+    @param: Category
+
+    lessDetail : Walk backwards through category selections
+
 
 
 */
+var ggg = {}
 angular.module('bubbleBaseApp').service('DatabaseService',
   function($window, $rootScope, GetDataService) {
     'use strict';
+
+    // initialize the history
+    $rootScope.history = [];
+
     // load the data from the flatfile into memory
     this.initializeDatabase = function() {
       GetDataService.get( function( database ) {
           $rootScope.businesses = database.data[0].businesses;
+        ggg = $rootScope.businesses
       } );
     };
 
     // TODO set this up as a prototype on array
-    var arrayHas = function(testArray, v){
+    var arrayHas = function(testArray, v) {
       for (var i = 0; i < testArray.length; i++) {
         if (testArray[i] === v) {
           return true;
@@ -33,13 +44,13 @@ angular.module('bubbleBaseApp').service('DatabaseService',
       if (undefined == $rootScope.currentLevel) {
         $rootScope.currentLevel = -1;
       }
-      $rootScope.parentCategory = currentCategory;
+      $rootScope.history.push(currentCategory);
       if ('Products' === currentCategory) {
         $rootScope.productFlag = true;
       } else if ('Services' === currentCategory) {
         $rootScope.productFlag = false;
       }
-      $rootScope.currentLevel++;
+
       var level = $rootScope.currentLevel;
       // the complexity comes from the fact that I want to handle multiple businesses under the same category, otherwise
       // drilling down into a heirarchy is pointless, everything would just be one level down
@@ -70,10 +81,8 @@ angular.module('bubbleBaseApp').service('DatabaseService',
       return returnVal;
     };
 
-    this.lessDetail = function() {
-    };
-
   });
+
 
 
 

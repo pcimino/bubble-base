@@ -7,17 +7,18 @@
 </header>
 
 <div id="bubbles">
-    <div class="bubble xProduct" ng-click="setupDisplay(0, true, false, 'Products');" ng-style='{{greenStyle[0]}}'><p class="bubble-title">Products<p></div>
-    <div class="bubble xService" ng-click="setupDisplay(0, false, true, 'Services');" ng-style='{{blueStyle[0]}}'><p class="bubble-title">Services<p></div>
+    <div class="bubble xProduct" ng-click="moreDetail(true, false, 'Products');" ng-style='{{greenStyle[0]}}'><p class="bubble-title">Products<p></div>
+    <div class="bubble xService" ng-click="moreDetail(false, true, 'Services');" ng-style='{{blueStyle[0]}}'><p class="bubble-title">Services<p></div>
     <div class="small-bubble xBack" ng-click="lessDetail();" ng-style='{{greenStyle[0]}}'><p class="small-bubble-title">Back<p></div>
     <div class="small-bubble xReset" ng-click="setupDisplay(-1, false, false);" ng-style='{{blueStyle[0]}}'><p class="small-bubble-title">Reset<p></div>
 
-    <div ng-repeat="cat in serviceLevelCat">
-        <div class="bubble show-bubble serviceLevel{{$index}} bubble-category-text" ng-click="moreDetail(cat);" ng-style='{{blueStyle[$index+1]}}'><p class="bubble-category">{{cat}}<p></div>
-    </div>
     <div ng-repeat="cat in productLevelCat">
-        <div class="bubble show-bubble productLevel{{$index}} bubble-category-text" ng-click="moreDetail(cat);" ng-style='{{greenStyle[$index+1]}}'><p class="bubble-category">{{cat}}<p></div>
+        <div class="bubble show-bubble productLevel{{$index}} bubble-category-text" ng-click="moreDetail(true, false, cat);" ng-style='{{greenStyle[$index+1]}}'><p class="bubble-category">{{cat}}<p></div>
     </div>
+    <div ng-repeat="cat in serviceLevelCat">
+        <div class="bubble show-bubble serviceLevel{{$index}} bubble-category-text" ng-click="moreDetail(false, true, cat);" ng-style='{{blueStyle[$index+1]}}'><p class="bubble-category">{{cat}}<p></div>
+    </div>
+
 
 
     <div ng-repeat="business in serviceLevelBus">
@@ -47,5 +48,6 @@
     <a href="#" class="btn btn-primary btn-lg">Home</a>
     <a href="#search" class="btn btn-success btn-lg">Cancel</a>
 </div>
+
 
 

@@ -15,10 +15,15 @@ angular.module('bubbleBaseApp')
 
 
     $scope.lessDetail = function() {
-      $scope.setupDisplay($rootScope.currentLevel-1, $rootScope.displayProducts, $rootScope.displayServices);
+      $rootScope.currentLevel -= 1;
+      if ($rootScope.currentLevel < -1) $rootScope.currentLevel = -1;
+      $rootScope.history.pop();
+      var cat = $rootScope.history.pop();
+      $scope.setupDisplay($rootScope.displayProducts, $rootScope.displayServices, cat);
     }
-    $scope.moreDetail = function(category) {
-      $scope.setupDisplay($rootScope.currentLevel+1, $rootScope.displayProducts, $rootScope.displayServices, category);
+    $scope.moreDetail = function(productFlag, serviceFlag, category) {
+      $rootScope.currentLevel++;
+      $scope.setupDisplay(productFlag, serviceFlag, category);
     }
 
 
@@ -72,17 +77,17 @@ angular.module('bubbleBaseApp')
         $rootScope.blueStyle.push({"background": '#'+blueRange[i] });
       }
     }
-    $scope.setupDisplay = function(level, products, services, category) {
+    $scope.setupDisplay = function(products, services, category) {
+      var level = $rootScope.currentLevel;
       var displayClass = [];
-   //   $rootScope.currentLevel = level;
+      $scope.hideAllBubbles();
+
       if (level === -1) {
-          $scope.hideAllBubbles();
           $scope.showBubble('xService');
           $scope.showBubble('xProduct');
           $scope.hideBubble('small-bubble');
           category = '';
       } else {
-        $scope.hideAllBubbles();
         $scope.showBubble('small-bubble');
         $rootScope.displayProducts = products;
         $rootScope.displayServices = services;
@@ -120,6 +125,7 @@ angular.module('bubbleBaseApp')
 
     $scope.setupDisplay($rootScope.currentLevel);
   });
+
 
 
 

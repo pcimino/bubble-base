@@ -85,11 +85,40 @@
           "imgHeight": "50%",
           "imgWidth": "50%",
           "productCategory": ["Robotics"],
+          "serviceCategory": ["Technology Consulting"]
+        },
+        {
+          "id": "x5",
+          "name": "Trans Lunar Designs, Inc.",
+          "street": "",
+          "city": "",
+          "state": "PA",
+          "phone": "(773) 357-7344",
+          "img": "tld.png",
+          "imgHeight": "50%",
+          "imgWidth": "50%",
+          "productCategory": [],
+          "serviceCategory": ["Technology Consulting"]
+        },
+        {
+          "id": "x6",
+          "name": "Quest Tours",
+          "street": "1 Lost Lands Lane",
+          "city": "Halley",
+          "state": "MI",
+          "phone": "(800) GOFORIT",
+          "img": "quest.png",
+          "imgHeight": "50%",
+          "imgWidth": "55%",
+          "productCategory": [
+          ],
           "serviceCategory": [
-            "Technology Consulting"
+            "Exploration",
+            "Charter the Uncharted"
           ]
         }
       ]
     }
   ]
 }
+

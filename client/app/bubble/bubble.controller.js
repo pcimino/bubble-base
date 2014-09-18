@@ -85,10 +85,10 @@ angular.module('bubbleBaseApp')
       if (level === -1) {
           $scope.showBubble('xService');
           $scope.showBubble('xProduct');
-          $scope.hideBubble('small-bubble');
+          $scope.hideBubble('small-button');
           category = '';
       } else {
-        $scope.showBubble('small-bubble');
+        $scope.showBubble('small-button');
         $rootScope.displayProducts = products;
         $rootScope.displayServices = services;
         $rootScope.productLevelBus = [];
@@ -125,6 +125,7 @@ angular.module('bubbleBaseApp')
 
     $scope.setupDisplay($rootScope.currentLevel);
   });
+
 
 
 

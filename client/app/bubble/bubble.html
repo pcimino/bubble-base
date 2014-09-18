@@ -7,22 +7,28 @@
 </header>
 
 <div id="bubbles">
-    <div class="bubble xProduct" ng-click="moreDetail(true, false, 'Products');" ng-style='{{greenStyle[0]}}'><p class="bubble-title">Products<p></div>
-    <div class="bubble xService" ng-click="moreDetail(false, true, 'Services');" ng-style='{{blueStyle[0]}}'><p class="bubble-title">Services<p></div>
-    <div class="small-bubble xBack" ng-click="lessDetail();" ng-style='{{greenStyle[0]}}'><p class="small-bubble-title">Back<p></div>
-    <div class="small-bubble xReset" ng-click="setupDisplay(-1, false, false);" ng-style='{{blueStyle[0]}}'><p class="small-bubble-title">Reset<p></div>
+    <div class="bubble xProduct" ng-click="moreDetail(true, false, 'Products');" ng-style='{{greenStyle[0]}}'><p class="bubble-title">Products<p><p class>3</p></div>
+    <div class="bubble xService" ng-click="moreDetail(false, true, 'Services');" ng-style='{{blueStyle[0]}}'><p class="bubble-title">Services<p><p>7</p></div>
+    <div class="small-button xBack" ng-click="lessDetail();" ng-style='{{greenStyle[0]}}'><p class="small-button-title">Back<p></div>
+    <div class="small-button xReset" ng-click="setupDisplay(-1, false, false);" ng-style='{{blueStyle[0]}}'><p class="small-button-title">Reset<p></div>
 
     <div ng-repeat="cat in productLevelCat">
-        <div class="bubble show-bubble productLevel{{$index}} bubble-category-text" ng-click="moreDetail(true, false, cat);" ng-style='{{greenStyle[$index+1]}}'><p class="bubble-category">{{cat}}<p></div>
+        <div class="bubble show-bubble productLevel{{$index}} bubble-category-text" ng-click="moreDetail(true, false, cat.cat);" ng-style='{{greenStyle[$index+1]}}'>
+            <p class="bubble-category">{{cat.cat}}</p>
+            <p class="">{{cat.count}}</p>
+        </div>
     </div>
     <div ng-repeat="cat in serviceLevelCat">
-        <div class="bubble show-bubble serviceLevel{{$index}} bubble-category-text" ng-click="moreDetail(false, true, cat);" ng-style='{{blueStyle[$index+1]}}'><p class="bubble-category">{{cat}}<p></div>
+        <div class="bubble show-bubble serviceLevel{{$index}} bubble-category-text" ng-click="moreDetail(false, true, cat.cat);" ng-style='{{blueStyle[$index+1]}}'>
+            <p class="bubble-category">{{cat.cat}}</p>
+            <p class="">{{cat.count}}</p>
+        </div>
     </div>
 
 
 
     <div ng-repeat="business in serviceLevelBus">
-        <div class="bubble s{{$index}} font-center bubble-provider-text" ng-style='{{greenStyle[$index+1]}}'>
+        <div class="bubble show-bubble s{{$index}} font-center bubble-provider-text" ng-style='{{greenStyle[$index+1]}}'>
             <img class='top-margin' src="/assets/images/{{business.img}}"  height="{{business.imgHeight}}" width="{{business.imgWidth}}">
             <p>{{business.name}}</p>
             <p>{{business.phone}}</p>
@@ -30,7 +36,7 @@
     </div>
 
     <div ng-repeat="business in productLevelBus">
-        <div class="bubble p{{$index}} font-center bubble-provider-text" ng-style='{{blueStyle[$index+1]}}'>
+        <div class="bubble show-bubble p{{$index}} font-center bubble-provider-text" ng-style='{{blueStyle[$index+1]}}'>
             <img class='top-margin' src="/assets/images/{{business.img}}"  height="{{business.imgHeight}}" width="{{business.imgWidth}}">
             <p>{{business.name}}</p>
             <p>{{business.phone}}</p>
@@ -48,6 +54,7 @@
     <a href="#" class="btn btn-primary btn-lg">Home</a>
     <a href="#search" class="btn btn-success btn-lg">Cancel</a>
 </div>
+
 
 
 

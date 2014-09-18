@@ -52,24 +52,24 @@ body { overflow: hidden }
     position: absolute;
 	  font-family:"Times New Roman", Times, serif;
 }
-.small-bubble {
-    width: 35px;
-    height: 20px;
-    border-radius: 50px;
-    -moz-border-radius: 50px;
-    -webkit-border-radius: 50px;
+.small-button {
+    width: 55px;
+    height: 30px;
+    border-radius: 100px;
+    -moz-border-radius: 100px;
+    -webkit-border-radius: 100px;
     position: absolute;
 	  font-family:"Times New Roman", Times, serif;
     opacity: 1.0;
 }
 .bubble-title {
     text-align:center;
-    padding: 35% 0 0 0;
-	  font-size:80%;
+    padding: 25% 0 0 0;
+
     color:'black';
-}.small-bubble-title {
+}.small-button-title {
     text-align:center;
-    padding: 8% 0 0 0;
+    padding: 12% 0 0 0;
 	  font-size:80%;
     color:'black';
 }
@@ -92,6 +92,7 @@ body { overflow: hidden }
 p {
     margin: 0;
     padding: 0;
+    text-align:center;
 }
 .top-margin {
 	margin: 10% 0 0 0;
@@ -205,6 +206,7 @@ p {
   left: 65%;
 	top:90%;
 }
+
 
 
 

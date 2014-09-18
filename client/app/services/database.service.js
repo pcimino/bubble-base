@@ -38,6 +38,26 @@ angular.module('bubbleBaseApp').service('DatabaseService',
       }
       return undefined;
     }
+    var arrayHasCat = function(testArray, v) {
+      for (var i = 0; i < testArray.length; i++) {
+        if (testArray[i].cat === v) {
+          return true;
+        }
+      }
+      return undefined;
+    }
+
+    var getBusinessCount = function(cat) {
+      var count = 0;
+      for (var i in $rootScope.businesses) {
+        if ($rootScope.productFlag) {
+          if (arrayHas($rootScope.businesses[i].productCategory, cat)) count++;
+        } else {
+          if (arrayHas($rootScope.businesses[i].serviceCategory, cat)) count++;
+        }
+      }
+      return count;
+    };
 
     this.moreDetail = function(currentCategory) {
       var returnVal = {'cat':[], 'bus':[]};
@@ -68,8 +88,8 @@ angular.module('bubbleBaseApp').service('DatabaseService',
           } else if (level === 0) {
             pushFlag = true;
           }
-          if (pushFlag && !arrayHas(returnVal.cat, categoryArray[level])) {
-            returnVal.cat.push(categoryArray[level]);
+          if (pushFlag && !arrayHasCat(returnVal.cat, categoryArray[level])) {
+            returnVal.cat.push({'cat':categoryArray[level], 'count': getBusinessCount(categoryArray[level])});
           }
 
         }
@@ -82,6 +102,7 @@ angular.module('bubbleBaseApp').service('DatabaseService',
     };
 
   });
+
 
 
 

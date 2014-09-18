@@ -11,9 +11,8 @@
     lessDetail : Walk backwards through category selections
 
 
-
 */
-var ggg = {}
+
 angular.module('bubbleBaseApp').service('DatabaseService',
   function($window, $rootScope, GetDataService) {
     'use strict';
@@ -25,7 +24,6 @@ angular.module('bubbleBaseApp').service('DatabaseService',
     this.initializeDatabase = function() {
       GetDataService.get( function( database ) {
           $rootScope.businesses = database.data[0].businesses;
-        ggg = $rootScope.businesses
       } );
     };
 
@@ -37,7 +35,7 @@ angular.module('bubbleBaseApp').service('DatabaseService',
         }
       }
       return undefined;
-    }
+    };
     var arrayHasCat = function(testArray, v) {
       for (var i = 0; i < testArray.length; i++) {
         if (testArray[i].cat === v) {
@@ -45,15 +43,19 @@ angular.module('bubbleBaseApp').service('DatabaseService',
         }
       }
       return undefined;
-    }
+    };
 
     var getBusinessCount = function(cat) {
       var count = 0;
       for (var i in $rootScope.businesses) {
         if ($rootScope.productFlag) {
-          if (arrayHas($rootScope.businesses[i].productCategory, cat)) count++;
+          if (arrayHas($rootScope.businesses[i].productCategory, cat)) {
+            count++;
+          }
         } else {
-          if (arrayHas($rootScope.businesses[i].serviceCategory, cat)) count++;
+          if (arrayHas($rootScope.businesses[i].serviceCategory, cat)) {
+            count++;
+          }
         }
       }
       return count;
@@ -61,7 +63,7 @@ angular.module('bubbleBaseApp').service('DatabaseService',
 
     this.moreDetail = function(currentCategory) {
       var returnVal = {'cat':[], 'bus':[]};
-      if (undefined == $rootScope.currentLevel) {
+      if (undefined === $rootScope.currentLevel) {
         $rootScope.currentLevel = -1;
       }
       $rootScope.history.push(currentCategory);

@@ -29,8 +29,8 @@ angular.module('bubbleBaseApp').service('StorageService',
         this.setByKey(key, resultArray);
       }
       return resultArray;
-    }
+    };
     this.setByKey = function(key, objectArray) {
       $window.sessionStorage.setItem(key, JSON.stringify(objectArray));
-    }
+    };
   });

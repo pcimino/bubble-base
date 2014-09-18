@@ -25,8 +25,6 @@
         </div>
     </div>
 
-
-
     <div ng-repeat="business in serviceLevelBus">
         <div class="bubble show-bubble s{{$index}} font-center bubble-provider-text" ng-style='{{greenStyle[$index+1]}}'>
             <img class='top-margin' src="/assets/images/{{business.img}}"  height="{{business.imgHeight}}" width="{{business.imgWidth}}">
@@ -44,7 +42,12 @@
     </div>
 
 </div>
-
+<!--
+            <p>
+               <input class=" tiny-check" type="checkbox" ng-change="toggleAddressBook(business.id)" ng-model="business.addressBook">
+                Address Book</input>
+            </p>
+-->
 <div>
     <button ng-click="showBubble('x0');showBubble('x1');showBubble('x2');showBubble('x3');showBubble('serviceLevel0');">Show</button>
     <button ng-click="hideAllBubbles()">Hide</button>

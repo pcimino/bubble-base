@@ -4,6 +4,7 @@ angular.module('bubbleBaseApp', [
   'ngCookies',
   'ngResource',
   'ngSanitize',
+  'ngDialog',
   'ngAnimate',
   'ui.router',
   'ui.bootstrap'

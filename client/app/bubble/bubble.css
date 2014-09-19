@@ -102,6 +102,9 @@ p {
 .top-margin {
 	margin: 10% 0 0 0;
 }
+.right-margin {
+	margin: 0 10% 0 0;
+}
 .s0 {
   left: 50%;
 	top:30%;

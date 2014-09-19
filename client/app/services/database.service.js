@@ -23,7 +23,18 @@ angular.module('bubbleBaseApp').service('DatabaseService',
     // load the data from the flatfile into memory
     this.initializeDatabase = function() {
       GetDataService.get( function( database ) {
-          $rootScope.businesses = database.data[0].businesses;
+        $rootScope.businesses = database.data[0].businesses;
+        $rootScope.productCount = 0;
+        $rootScope.serviceCount = 0;
+
+        for (var i in $rootScope.businesses) {
+          if ($rootScope.businesses[i].productCategory.length > 0) {
+            $rootScope.productCount++;
+          }
+          if ($rootScope.businesses[i].serviceCategory.length > 0) {
+            $rootScope.serviceCount++;
+          }
+        }
       } );
     };
 

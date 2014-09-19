@@ -5,7 +5,7 @@
     Position of bubbles should be dynamic, not defining bubbles and fixed div
 */
 angular.module('bubbleBaseApp')
-  .controller('BubbleCtrl', function ($scope, $rootScope, StorageService, DatabaseService) {
+  .controller('BubbleCtrl', function ($scope, $rootScope, StorageService, DatabaseService, ngDialog) {
 
     var i;
     DatabaseService.initializeDatabase();
@@ -28,7 +28,19 @@ angular.module('bubbleBaseApp')
       $rootScope.currentLevel++;
       $scope.setupDisplay(productFlag, serviceFlag, category);
     };
-
+    $scope.addressBookModal = function(busId) {
+      for (var i in $rootScope.businesses) {
+        if ($rootScope.businesses[i].id === busId) {
+          var templateString = "<p>Address Book</p>";
+          if ($rootScope.businesses[i].addressBook) {
+            templateString = templateString + "<p><a href='' ng-click='removeAddress(\"" + busId + "\")' class='btn btn-primary btn-sm right-margin'>Remove From Address Book</a><a href='' ng-click='cancelAddressDialog()' class='btn btn-success btn-sm'>Cancel</a></p>";
+          } else {
+            templateString = templateString + "<p><a href='' ng-click='addAddress(\"" + busId + "\")' class='btn btn-primary btn-sm right-margin'>Add To Address Book</a><a href='' ng-click='cancelAddressDialog()' class='btn btn-success btn-sm'>Cancel</a></p>";
+          }
+          ngDialog.open({template:templateString, showClose:true, controller:"AddressDialogCtrl", plain:true}); // 'address.template.html');
+        }
+      }
+    }
 
     $scope.hideAllBubbles = function() {
       // can't simply call hide on class 'bubble' because it will show the bubbles prior to hiding

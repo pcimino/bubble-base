@@ -7,7 +7,7 @@ angular.module('bubbleBaseApp')
       'link': '/'
     },
     {
-      'title': 'Start',
+      'title': 'Intro',
       'link': '/start'
     },
     {
@@ -15,7 +15,7 @@ angular.module('bubbleBaseApp')
       'link': '/bubble'
     },
     {
-      'title': 'List',
+      'title': 'Address Book',
       'link': '/list'
     }];
 
@@ -25,4 +25,3 @@ angular.module('bubbleBaseApp')
       return route === $location.path();
     };
   });
- 

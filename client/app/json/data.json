@@ -22,7 +22,8 @@
             "General Contracting",
             "Home Repair",
             "Woodworking & Paving"
-          ]
+          ],
+          "socialMedia" :[]
         },
         {
           "id": "x1",
@@ -42,7 +43,8 @@
             "Exploration",
             "Charter the Uncharted",
             "Arctic & Antarctic Tours"
-          ]
+          ],
+          "socialMedia" :[]
         },
         {
           "id": "x2",
@@ -57,7 +59,8 @@
           "productCategory": [],
           "serviceCategory": [
             "Investigative Services"
-          ]
+          ],
+          "socialMedia" :[]
         },
         {
           "id": "x3",
@@ -72,7 +75,8 @@
           "productCategory": [],
           "serviceCategory": [
             "Investigative Services"
-          ]
+          ],
+          "socialMedia" :[]
         },
         {
           "id": "x4",
@@ -85,7 +89,8 @@
           "imgHeight": "50%",
           "imgWidth": "50%",
           "productCategory": ["Robotics"],
-          "serviceCategory": ["Technology Consulting"]
+          "serviceCategory": ["Technology Consulting"],
+          "socialMedia" :[]
         },
         {
           "id": "x5",
@@ -98,7 +103,9 @@
           "imgHeight": "50%",
           "imgWidth": "50%",
           "productCategory": [],
-          "serviceCategory": ["Technology Consulting"]
+          "serviceCategory": ["Technology Consulting"],
+          "socialMedia" :[{"logo":"Twitter_logo-4.png", "link":"https://twitter.com/PLCimino"},
+                          {"logo":"LinkedIn_logo.png", "link":"https://www.linkedin.com/pub/paul-cimino/0/17b/474/"}]
         },
         {
           "id": "x6",
@@ -115,7 +122,43 @@
           "serviceCategory": [
             "Exploration",
             "Charter the Uncharted"
-          ]
+          ],
+          "socialMedia" :[]
+        },
+        {
+          "id": "x7",
+          "name": "Ram's Gate Winery",
+          "street": "28700 ARNOLD DR.",
+          "city": "SONOMA",
+          "state": "CA 95476",
+          "phone": "(707) 721 8700",
+          "email": "INFO@RAMSGATEWINERY.COM",
+          "img": "ramhead.png",
+          "imgHeight": "50%",
+          "imgWidth": "50%",
+          "productCategory": [
+            "Fine Wines"
+          ],
+          "serviceCategory": [],
+          "socialMedia" :[{"logo":"Twitter_logo-4.png", "link":"https://twitter.com/ramsgatewinery"},
+                          {"logo":"wordpress-logo.png", "link":"http://ramsgatewinery.wordpress.com/"},
+                          {"logo":"Facebook_Logo.png", "link":"https://www.facebook.com/ramsgatewinery"}]
+        },
+        {
+          "id": "x8",
+          "name": "Gadget Detectives",
+          "street": "",
+          "city": "",
+          "state": "CA",
+          "phone": "(800) GADGETS",
+          "img": "inspector-gadget-gadget.png",
+          "imgHeight": "50%",
+          "imgWidth": "50%",
+          "productCategory": [],
+          "serviceCategory": [
+            "Investigative Services"
+          ],
+          "socialMedia" :[]
         }
       ]
     }

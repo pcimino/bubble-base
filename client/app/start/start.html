@@ -7,3 +7,12 @@
     <p class="lead">Each time you select a category, the bubbles will change with detailed information in that category.</p>
   </div>
 </header>
+
+<div><img class='top-margin' src="/assets/slides/{{slides[slideNumber].img}}" ></div>
+<p>{{slides[slideNumber].caption}}</p>
+<ul>
+    <li ng-repeat="item in slides[slideNumber].bullets">{{item}}</li>
+</ul>
+<div class="small-button xBack" ng-click="previousSlide();" ><p class="small-button-title">Previous<p></div>
+<div class="small-button xReset" ng-click="nextSlide();" ><p class="small-button-title">Next<p></div>
+

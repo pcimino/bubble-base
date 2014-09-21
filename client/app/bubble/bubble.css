@@ -68,14 +68,15 @@ body { overflow: hidden }
 	  font-family:"Times New Roman", Times, serif;
     opacity: 1.0;
 }
-.bubble-title {
-    text-align:center;
-    padding: 25% 0 0 0;
-    color:'black';
-}.small-button-title {
+.small-button-title {
     text-align:center;
     padding: 12% 0 0 0;
 	  font-size:80%;
+    color:'black';
+}
+.bubble-title {
+    text-align:center;
+    padding: 25% 0 0 0;
     color:'black';
 }
 .bubble-category{
@@ -214,6 +215,7 @@ p {
   left: 65%;
 	top:90%;
 }
+
 
 
 

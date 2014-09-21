@@ -1,0 +1,30 @@
+
+{
+  "data": [
+        {
+          "id": "slide0",
+          "img": "slide_0.png",
+          "caption" : "slide 0",
+          "bullets" : ["bullet 0", "bullet 1", "bullet 3"]
+        },        {
+          "id": "slide1",
+          "img": "slide_1.png",
+          "caption" : "slide 1",
+          "bullets" : ["bullet 0", "bullet 1", "bullet 3"]
+        },        {
+          "id": "slide2",
+          "img": "slide_2.png",
+          "caption" : "slide 2",
+          "bullets" : ["bullet 0", "bullet 1", "bullet 3"]
+        },        {
+          "id": "slide3",
+          "img": "slide_3.png",
+          "caption" : "slide 3",
+          "bullets" : ["bullet 0", "bullet 1", "bullet 3"]
+        }
+      ]
+
+}
+
+
+

@@ -13,4 +13,13 @@ angular.module( 'bubbleBaseApp' ).factory( 'GetDataService', function($resource)
         isArray:true
       }
     } );
+}).factory( 'GetSlidesService', function($resource) {
+      return $resource( 'app/json/slides.json', {}, {
+      query: {
+        method:'GET',
+        isArray:true
+      }
+    } );
 });
+
+

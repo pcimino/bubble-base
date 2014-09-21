@@ -1,6 +1,7 @@
 slide show
 
-addressbook
+addressbook: Pretty-fy
+
 
 
 

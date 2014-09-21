@@ -8,8 +8,11 @@ angular.module('bubbleBaseApp')
   .controller('BubbleCtrl', function ($scope, $rootScope, StorageService, DatabaseService, ngDialog) {
 
     var i;
-    DatabaseService.initializeDatabase();
+    if (undefined === $rootScope.businesses || $rootScope.businesses.length === 0) {
+      DatabaseService.initializeDatabase();
+    }
 
+    $rootScope.currentLevel = -1;
     var blueRange = ['CCD6F5', '99ADEB', '6685E0', '335CD6', '0033CC'];
     // var redRange = ['FFCCCC', 'FFB2B2', 'FF9999', 'FF8080', 'FF6666', 'FF4D4D', 'FF3333', 'FF1919', 'FF0000'];
     var greenRange = ['01DF01', '04B404', '088A08', '0B610B', '0B3B0B', '003300'];
@@ -143,6 +146,7 @@ angular.module('bubbleBaseApp')
 
     $scope.setupDisplay($rootScope.currentLevel);
   });
+
 
 
 

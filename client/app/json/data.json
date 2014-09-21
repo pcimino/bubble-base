@@ -104,7 +104,8 @@
           "imgWidth": "50%",
           "productCategory": [],
           "serviceCategory": ["Technology Consulting"],
-          "socialMedia" :[{"logo":"Twitter_logo-4.png", "link":"https://twitter.com/PLCimino"},
+          "socialMedia" :[{"logo": "github.png", "link": "https://github.com/pcimino"},
+                          {"logo":"Twitter_logo-4.png", "link":"https://twitter.com/PLCimino"},
                           {"logo":"LinkedIn_logo.png", "link":"https://www.linkedin.com/pub/paul-cimino/0/17b/474/"}]
         },
         {
@@ -164,4 +165,5 @@
     }
   ]
 }
+
 

@@ -1,6 +1,15 @@
-slide show
+slide show:
+      line everything up
+      animate movements
+      real slides
 
-addressbook: Pretty-fy
+
+addressbook:
+      Pretty-fy
+
+bubbles
+      fix expand/contract
+
 
 
 

@@ -24,4 +24,16 @@
   left: 65%;
 	top:90%;
 }
+.slide {
+  padding: 0 0 0 30%;
+}
+
+.caption {
+  padding: 0 0 10px 10%;
+	font-size:30px;
+}
+.bullet-text {
+  padding: 0 0 0 12%;
+	font-size:20px;
+}
 

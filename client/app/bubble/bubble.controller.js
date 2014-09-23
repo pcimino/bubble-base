@@ -64,17 +64,7 @@ angular.module('bubbleBaseApp')
       element.removeClass('show-bubble');
       element.addClass('hide-bubble');
     };
-/*
-    // TODO set this up as a prototype on array
-    var arrayHas = function(testArray, v){
-      for (i = 0; i < testArray.length; i++) {
-        if (testArray[i] === v) {
-          return true;
-        }
-      }
-      return undefined;
-    }
-*/
+
     if (undefined === $rootScope.currentLevel) {
       $rootScope.currentLevel = -1;
     }
@@ -146,6 +136,7 @@ angular.module('bubbleBaseApp')
 
     $scope.setupDisplay($rootScope.currentLevel);
   });
+
 
 
 

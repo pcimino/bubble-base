@@ -19,15 +19,15 @@ angular.module('bubbleBaseApp')
         $scope.nextLabel = "Next";
         $scope.nextColor = '#04B404';
       }
-      $scope.$apply();
     };
 
     $scope.nextSlide = function() {
       $scope.slideNumber++;
       if ($scope.slideNumber >= $scope.slides.length) {
         $location.path('/bubble');
+      } else {
+        update();
       }
-      update();
     };
 
     $scope.previousSlide = function() {
@@ -39,6 +39,7 @@ angular.module('bubbleBaseApp')
     };
 
   });
+
 
 
 

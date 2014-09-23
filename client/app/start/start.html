@@ -2,18 +2,18 @@
 
 <header class="hero-unit" id="banner">
   <div class="container">
-    <h1>Get Ready</h1>
-    <p class="lead">You will be presented with bubbles representing a category.</p>
-    <p class="lead">Each time you select a category, the bubbles will change with detailed information in that category.</p>
+    <h1>Bubble Base UI</h1>
   </div>
 </header>
-
-<div><img class='top-margin' src="/assets/slides/{{slides[slideNumber].img}}" ></div>
-<p>{{slides[slideNumber].caption}}</p>
-<ul>
-    <li ng-repeat="item in slides[slideNumber].bullets">{{item}}</li>
-</ul>
+<div class="slide">
+    <img src="/assets/slides/{{slides[slideNumber].img}}" >
+    <div class="caption">{{slides[slideNumber].caption}}</div>
+    <ul class="bullet-text">
+        <li ng-repeat="item in slides[slideNumber].bullets">{{item}}</li>
+    </ul>
+</div>
 <div class="small-button xBack" ng-click="previousSlide();" ><p class="small-button-title">Previous<p></div>
 <div class="small-button xNext" ng-click="nextSlide();" ng-style="{'background': nextColor}"><p class="small-button-title">{{nextLabel}}<p></div>
+
 
 

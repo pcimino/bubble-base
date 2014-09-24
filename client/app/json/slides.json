@@ -4,22 +4,23 @@
         {
           "id": "slide0",
           "img": "slide_0.png",
-          "caption" : "slide 0",
-          "bullets" : ["Click on a Category", "See more detail]
-        },        {
+          "caption" : "Click through the icons to find a company",
+          "bullets" : ["Click on a Category", "See more detail"]
+        },
+        {
           "id": "slide1",
           "img": "slide_1.png",
-          "caption" : "slide 1",
+          "caption" : "Add a company to the address book",
           "bullets" : ["Click on a Company", "Add it to the Address Book"]
         },        {
           "id": "slide2",
           "img": "slide_2.png",
-          "caption" : "slide 2",
-          "bullets" : ["Click on a COmpany already in the Address Book", "See the option to remove it form the Address Book"]
+          "caption" : "Remove a company from the address book",
+          "bullets" : ["Click on a Company already in the Address Book", "See the option to remove it form the Address Book"]
         },        {
           "id": "slide3",
           "img": "slide_3.png",
-          "caption" : "slide 3",
+          "caption" : "Address book",
           "bullets" : ["Continue to the Address Book to see the list"]
         }
       ]

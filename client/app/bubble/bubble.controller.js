@@ -36,7 +36,7 @@ angular.module('bubbleBaseApp')
         if ($rootScope.businesses[i].id === busId) {
           var templateString = "<p>Address Book</p>";
           if ($rootScope.businesses[i].addressBook) {
-            templateString = templateString + "<p><a href='' ng-click='removeAddress(\"" + busId + "\")' class='btn btn-primary btn-sm right-margin'>Remove From Address Book</a><a href='' ng-click='cancelAddressDialog()' class='btn btn-success btn-sm'>Cancel</a></p>";
+            templateString = templateString + "<p><a href='' ng-click='removeAddress(\"" + busId + "\")' class='btn btn-primary btn-sm right-margin red-button'>Remove From Address Book</a><a href='' ng-click='cancelAddressDialog()' class='btn btn-success btn-sm'>Cancel</a></p>";
           } else {
             templateString = templateString + "<p><a href='' ng-click='addAddress(\"" + busId + "\")' class='btn btn-primary btn-sm right-margin'>Add To Address Book</a><a href='' ng-click='cancelAddressDialog()' class='btn btn-success btn-sm'>Cancel</a></p>";
           }
@@ -96,10 +96,10 @@ angular.module('bubbleBaseApp')
       if (level === -1) {
           $scope.showBubble('xService');
           $scope.showBubble('xProduct');
-          $scope.hideBubble('small-button');
+          //$scope.hideBubble('small-button');
           category = '';
       } else {
-        $scope.showBubble('small-button');
+        //$scope.showBubble('small-button');
         $rootScope.displayProducts = products;
         $rootScope.displayServices = services;
         $rootScope.productLevelBus = [];
@@ -136,6 +136,8 @@ angular.module('bubbleBaseApp')
 
     $scope.setupDisplay($rootScope.currentLevel);
   });
+
+
 
 
 

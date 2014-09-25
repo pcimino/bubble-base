@@ -8,10 +8,26 @@
     setBusinesses : Stores an array of business objects in session stlorage
       @arg [] businesses
 
+    this is a hack for a hack: Was using rootScope for everything to expedite development
+    using storage is slightly better in that it divorces the controlelr from the rootScope
+    getDataBlob : retrieves the pseudo global datas store
+
+    setDataBlob : Stores an array of business objects in session stlorage
+      @arg {} blobby[] businesses
+
 */
 angular.module('bubbleBaseApp').service('StorageService',
   function($window) {
     'use strict';
+    // get data blob
+    this.getDataBlob = function() {
+      return this.getByKey('dataBlob');
+    };
+    // store blob
+    this.setDataBlob = function(blobby) {
+      this.setByKey('dataBlob', blobby);
+    };
+
     // get all businesses
     this.getAddressBook = function() {
       return this.getByKey('businesses');
@@ -20,6 +36,7 @@ angular.module('bubbleBaseApp').service('StorageService',
     this.setAddressBook = function(businesses) {
       this.setByKey('businesses', businesses);
     };
+
 
     // generic helpers
     this.getByKey = function(key) {
@@ -34,3 +51,4 @@ angular.module('bubbleBaseApp').service('StorageService',
       $window.sessionStorage.setItem(key, JSON.stringify(objectArray));
     };
   });
+

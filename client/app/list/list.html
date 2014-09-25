@@ -5,13 +5,19 @@
     <h3>Address Book</h3>
   </div>
 </header>
-<div ng-repeat="business in addressList">
-    <div>
-        <p><img src="/assets/images/{{business.img}}"  height="30px" width="30px">{{business.name}}</p>
-        <p>{{business.street}}, {{business.city}} {{business.state}}</p>
-        <p>{{business.phone}}</p>
-        <p ng-repeat="socialMedia in business.socialMedia">
-            <a href="{{socialMedia.link}}" target="_blank"><img src="/assets/images/{{socialMedia.logo}}" height="30px" width="30px"></a>
-        </p>
+
+<div id="scrollArea" class="spacer">
+    <div ng-repeat="business in addressList">
+        <div class="list-item" ng-class-odd="'odd'" ng-class-even="'even'">
+            <div class="left list-title"><img src="/assets/images/{{business.img}}"  height="40px" width="40px">{{business.name}}</div>
+            <div class="left" ng-hide="!business.street">{{business.street}}, {{business.city}} {{business.state}}</div>
+            <div class="left">{{business.phone}}</div>
+            <div class="left">
+            <span ng-repeat="socialMedia in business.socialMedia">
+                <a href="{{socialMedia.link}}" target="_blank"><img src="/assets/images/{{socialMedia.logo}}" height="30px" width="30px"></a>
+            </span>
+            </div>
+        </div>
     </div>
 </div>
+

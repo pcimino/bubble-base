@@ -1,5 +1,5 @@
 
-.small-button {
+.start-small-button {
     width: 125px;
     height: 50px;
     border-radius: 100px;
@@ -9,18 +9,18 @@
 	  font-family:"Times New Roman", Times, serif;
     opacity: 1.0;
 }
-.small-button-title {
+.start-small-button-title {
     text-align:center;
     padding: 5px 0 0 0;
 	  font-size:30px;
     color:'black';
 }
-.xBack {
+.start-back {
   left: 35%;
 	top:90%;
   background-color: #99ADEB;
 }
-.xNext {
+.start-next {
   left: 65%;
 	top:90%;
 }
@@ -36,4 +36,5 @@
   padding: 0 0 0 12%;
 	font-size:25px;
 }
+
 

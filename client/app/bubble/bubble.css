@@ -1,48 +1,36 @@
 /* Helpful: http://www.css3maker.com/css3-animation.html */
 
-.thing-form {
-    margin: 20px 0;
-}
-
 /* scale up */
 @keyframes scaleUp {
 	from 	{ opacity: 0.0; transform: scale(0); }
-  to 	{ opacity: 1.0; transform: scale(3); }
+  to 	{ opacity: 1.0; transform: scale(2.5); }
 }
 @-webkit-keyframes scaleUp {
 	from 	{ opacity: 0.0; -webkit-transform: scale(0); }
-  to 	{ opacity: 1.0; -webkit-transform: scale(3); }
+  to 	{ opacity: 1.0; -webkit-transform: scale(2.5); }
 }
 @-moz-keyframes scaleUp {
 	from 	{ opacity: 0.0; -moz-transform: scale(0); }
-  to 	{ opacity: 1.0; -moz-transform: scale(3); }
+  to 	{ opacity: 1.0; -moz-transform: scale(2.5); }
 }
 
 /* scale up */
 @keyframes scaleDown {
-	from 	{ opacity: 1.0; transform: scale(3); }
+	from 	{ opacity: 1.0; transform: scale(2.5); }
   to 	{ opacity: 0.0; transform: scale(0); }
 }
 @-webkit-keyframes scaleDown {
-	from 	{ opacity: 1.0; -webkit-transform: scale(3); }
+	from 	{ opacity: 1.0; -webkit-transform: scale(2.5); }
   to 	{ opacity: 0.0; -webkit-transform: scale(0); }
 }
 @-moz-keyframes scaleDown {
-	from 	{ opacity: 1.0; -moz-transform: scale(3); }
+	from 	{ opacity: 1.0; -moz-transform: scale(2.5); }
   to 	{ opacity: 0.0; -moz-transform: scale(0); }
 }
 
-.show-bubble { -webkit-animation: scaleUp 1.5s both ease-in-out; -moz-animation: scaleUp 1.5s both ease-in-out; animation: scaleUp 1.5s both ease-in-out; z-index: 8888; }
-.hide-bubble { -webkit-animation: scaleDown 1.5s both ease-in-out; -moz-animation: scaleDown 1.5s both ease-in-out; animation: scaleDown 1.5s both ease-in-out; z-index: 9999; }
+.show-bubble { -webkit-animation: scaleUp 0.75s both ease-in-out; -moz-animation: scaleUp 0.75s both ease-in-out; animation: scaleUp 0.75s both ease-in-out; z-index: 8888; }
+.hide-bubble { -webkit-animation: scaleDown 0.75s both ease-in-out; -moz-animation: scaleDown 0.75s both ease-in-out; animation: scaleDown 0.75s both ease-in-out; z-index: 9999; }
 
-html,
-body,
-body { overflow: hidden }
-.tiny-check {
-    width: 8px;
-    height: 8px;
-    vertical-align:middle;
-}
 
 #bubbles {
   padding: 100px 0;
@@ -59,8 +47,8 @@ body { overflow: hidden }
 	  font-family:"Times New Roman", Times, serif;
 }
 .small-button {
-    width: 55px;
-    height: 30px;
+    width: 125px;
+    height: 50px;
     border-radius: 100px;
     -moz-border-radius: 100px;
     -webkit-border-radius: 100px;
@@ -70,9 +58,12 @@ body { overflow: hidden }
 }
 .small-button-title {
     text-align:center;
-    padding: 12% 0 0 0;
-	  font-size:80%;
+    padding: 5px 0 0 0;
+	  font-size:30px;
     color:'black';
+}
+.red-button {
+  background-color: red;
 }
 .bubble-title {
     text-align:center;
@@ -207,14 +198,15 @@ p {
   left: 65%;
 	top:40%;
 }
-.xBack {
+.bubble-back {
   left: 35%;
 	top:90%;
 }
-.xReset {
+.bubble-reset {
   left: 65%;
 	top:90%;
 }
+
 
 
 

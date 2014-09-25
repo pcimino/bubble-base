@@ -9,8 +9,8 @@
 <div id="bubbles">
     <div class="bubble xProduct" ng-click="moreDetail(true, false, 'Products');" ng-style='{{greenStyle[0]}}'><p class="bubble-title">Products<p><p class>{{productCount}}</p></div>
     <div class="bubble xService" ng-click="moreDetail(false, true, 'Services');" ng-style='{{blueStyle[0]}}'><p class="bubble-title">Services<p><p>{{serviceCount}}</p></div>
-    <div class="small-button xBack" ng-click="lessDetail();" ng-style='{{greenStyle[0]}}'><p class="small-button-title">Back<p></div>
-    <div class="small-button xReset" ng-click="setupDisplay(-1, false, false);" ng-style='{{blueStyle[0]}}'><p class="small-button-title">Reset<p></div>
+    <div class="small-button bubble-back" ng-hide="currentLevel < 0" ng-click="lessDetail();" ng-style='{{greenStyle[0]}}'><p class="small-button-title">Back<p></div>
+    <div class="small-button bubble-reset" ng-hide="currentLevel < 0" ng-click="setupDisplay(-1, false, false);" ng-style='{{blueStyle[0]}}'><p class="small-button-title">Reset<p></div>
 
     <div ng-repeat="cat in productLevelCat">
         <div class="bubble show-bubble productLevel{{$index}} bubble-category-text" ng-click="moreDetail(true, false, cat.cat);" ng-style='{{greenStyle[$index+1]}}'>
@@ -42,6 +42,7 @@
     </div>
 
 </div>
+
 
 
 

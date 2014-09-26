@@ -12,7 +12,7 @@ angular.module('bubbleBaseApp')
       DatabaseService.initializeDatabase();
     }
 
-    $rootScope.currentLevel = -1;
+    $rootScope.currentLevel = -1; 
     var blueRange = ['CCD6F5', '99ADEB', '6685E0', '335CD6', '0033CC'];
     // var redRange = ['FFCCCC', 'FFB2B2', 'FF9999', 'FF8080', 'FF6666', 'FF4D4D', 'FF3333', 'FF1919', 'FF0000'];
     var greenRange = ['01DF01', '04B404', '088A08', '0B610B', '0B3B0B', '003300'];
@@ -26,6 +26,7 @@ angular.module('bubbleBaseApp')
       $rootScope.history.pop();
       var cat = $rootScope.history.pop();
       $scope.setupDisplay($rootScope.displayProducts, $rootScope.displayServices, cat);
+
     };
     $scope.moreDetail = function(productFlag, serviceFlag, category) {
       $rootScope.currentLevel++;
@@ -36,7 +37,7 @@ angular.module('bubbleBaseApp')
         if ($rootScope.businesses[i].id === busId) {
           var templateString = "<p>Address Book</p>";
           if ($rootScope.businesses[i].addressBook) {
-            templateString = templateString + "<p><a href='' ng-click='removeAddress(\"" + busId + "\")' class='btn btn-primary btn-sm right-margin red-button'>Remove From Address Book</a><a href='' ng-click='cancelAddressDialog()' class='btn btn-success btn-sm'>Cancel</a></p>";
+            templateString = templateString + "<p><a href='' ng-click='removeAddress(\"" + busId + "\")' class='btn btn-primary btn-sm right-margin'>Remove From Address Book</a><a href='' ng-click='cancelAddressDialog()' class='btn btn-success btn-sm'>Cancel</a></p>";
           } else {
             templateString = templateString + "<p><a href='' ng-click='addAddress(\"" + busId + "\")' class='btn btn-primary btn-sm right-margin'>Add To Address Book</a><a href='' ng-click='cancelAddressDialog()' class='btn btn-success btn-sm'>Cancel</a></p>";
           }
@@ -96,10 +97,10 @@ angular.module('bubbleBaseApp')
       if (level === -1) {
           $scope.showBubble('xService');
           $scope.showBubble('xProduct');
-          //$scope.hideBubble('small-button');
+          $scope.hideBubble('small-button');
           category = '';
       } else {
-        //$scope.showBubble('small-button');
+        $scope.showBubble('small-button');
         $rootScope.displayProducts = products;
         $rootScope.displayServices = services;
         $rootScope.productLevelBus = [];
@@ -136,8 +137,6 @@ angular.module('bubbleBaseApp')
 
     $scope.setupDisplay($rootScope.currentLevel);
   });
-
-
 
 
 

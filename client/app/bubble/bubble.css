@@ -13,7 +13,6 @@
 	from 	{ opacity: 0.0; -moz-transform: scale(0); }
   to 	{ opacity: 1.0; -moz-transform: scale(2.5); }
 }
-
 /* scale up */
 @keyframes scaleDown {
 	from 	{ opacity: 1.0; transform: scale(2.5); }
@@ -31,6 +30,9 @@
 .show-bubble { -webkit-animation: scaleUp 0.75s both ease-in-out; -moz-animation: scaleUp 0.75s both ease-in-out; animation: scaleUp 0.75s both ease-in-out; z-index: 8888; }
 .hide-bubble { -webkit-animation: scaleDown 0.75s both ease-in-out; -moz-animation: scaleDown 0.75s both ease-in-out; animation: scaleDown 0.75s both ease-in-out; z-index: 9999; }
 
+.bubble-anim.ng-hide-add, .bubble-anim.ng-hide-remove { -webkit-animation: scaleUp 0.75s both ease-in-out; -moz-animation: scaleUp 0.75s both ease-in-out; animation: scaleUp 0.75s both ease-in-out; z-index: 8888; }
+.bubble-anim.ng-show-add, .bubble-anim.ng-show-remove { -webkit-animation: scaleDown 0.75s both ease-in-out; -moz-animation: scaleDown 0.75s both ease-in-out; animation: scaleDown 0.75s both ease-in-out; z-index: 9999; }
+
 
 #bubbles {
   padding: 100px 0;
@@ -47,8 +49,8 @@
 	  font-family:"Times New Roman", Times, serif;
 }
 .small-button {
-    width: 125px;
-    height: 50px;
+    width: 40px;
+    height: 15px;
     border-radius: 100px;
     -moz-border-radius: 100px;
     -webkit-border-radius: 100px;
@@ -58,8 +60,8 @@
 }
 .small-button-title {
     text-align:center;
-    padding: 5px 0 0 0;
-	  font-size:30px;
+    padding: 0px 0 0 0;
+	  font-size:10px;
     color:'black';
 }
 .red-button {

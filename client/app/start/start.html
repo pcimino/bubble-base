@@ -5,16 +5,14 @@
     <h1>Bubble Base UI</h1>
   </div>
 </header>
-<div class="slide">
+<div class="slide slide-image">
     <img src="/assets/slides/{{slides[slideNumber].img}}" >
     <div class="caption">{{slides[slideNumber].caption}}</div>
+</div>
+<div class="slide slide-bullets">
     <ul class="bullet-text">
         <li ng-repeat="item in slides[slideNumber].bullets">{{item}}</li>
     </ul>
 </div>
-<div class="start-small-button start-back" ng-click="previousSlide();" ><p class="start-small-button-title">Previous<p></div>
-<div class="start-small-button start-next" ng-click="nextSlide();" ng-style="{'background': nextColor}"><p class="start-small-button-title">{{nextLabel}}<p></div>
-
-
-
-
+<div class="start-small-button start-back start-small-button-title" ng-click="previousSlide();" >Previous</div>
+<div class="start-small-button start-next start-small-button-title" ng-click="nextSlide();" ng-style="{'background': nextColor}">{{nextLabel}}</div>

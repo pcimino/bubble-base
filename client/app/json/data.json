@@ -14,14 +14,11 @@
           "imgWidth": "50%",
           "productCategory": [
             "Construction",
-            "Buildings",
             "Custom Homes"
           ],
           "serviceCategory": [
-            "Construction",
             "General Contracting",
-            "Home Repair",
-            "Woodworking & Paving"
+            "Home Repair"
           ],
           "socialMedia" :[]
         },
@@ -74,7 +71,8 @@
           "imgWidth": "50%",
           "productCategory": [],
           "serviceCategory": [
-            "Investigative Services"
+            "Investigative Services",
+            "Paranormal Activity"
           ],
           "socialMedia" :[]
         },

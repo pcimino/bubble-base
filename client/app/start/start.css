@@ -25,14 +25,20 @@
 	top:90%;
 }
 .slide {
-  padding: 1% 0 0 20%;
-}
 
+}
+.slide-image {
+  padding: 1% 0 0 32%;
+}
+.slide-bullets {
+  padding: 1% 0 0 38%;
+}
 .caption {
-  padding: 0 0 10px 10%;
+  padding: 0 0 0 15%;
 	font-size:14px;
 }
 .bullet-text {
   padding: 0 0 0 12%;
 	font-size:25px;
 }
+

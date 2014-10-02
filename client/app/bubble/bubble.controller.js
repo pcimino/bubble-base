@@ -5,19 +5,27 @@
     Position of bubbles should be dynamic, not defining bubbles and fixed div
 */
 angular.module('bubbleBaseApp')
-  .controller('BubbleCtrl', function ($scope, $rootScope, StorageService, DatabaseService, ngDialog) {
+  .controller('BubbleCtrl', function ($scope, $rootScope, $location, StorageService, DatabaseService, ngDialog) {
 
     var i;
+    var db = DatabaseService;
+
     if (undefined === $rootScope.businesses || $rootScope.businesses.length === 0) {
       DatabaseService.initializeDatabase();
     }
-
-    $rootScope.currentLevel = -1; 
+    $rootScope.currentLevel = -1;
     var blueRange = ['CCD6F5', '99ADEB', '6685E0', '335CD6', '0033CC'];
     // var redRange = ['FFCCCC', 'FFB2B2', 'FF9999', 'FF8080', 'FF6666', 'FF4D4D', 'FF3333', 'FF1919', 'FF0000'];
     var greenRange = ['01DF01', '04B404', '088A08', '0B610B', '0B3B0B', '003300'];
     // var orangeRange = ['FFEBD6', 'FFE0C2', 'FFD6AD', 'FFCC99', 'FFC285', 'FFB870', 'FFAD5C', 'FFA347', 'FF9933' ];
 
+    $scope.addressBook = function() {
+      $location.path('/list');
+    };
+    $scope.topLevel = function() {
+      $rootScope.currentLevel = -1;
+      $scope.setupDisplay(false, false, '');
+    };
     $scope.lessDetail = function() {
       $rootScope.currentLevel -= 1;
       if ($rootScope.currentLevel < -1) {
@@ -25,7 +33,7 @@ angular.module('bubbleBaseApp')
       }
       $rootScope.history.pop();
       var cat = $rootScope.history.pop();
-      $scope.setupDisplay($rootScope.displayProducts, $rootScope.displayServices, cat);
+      $scope.setupDisplay($scope.displayProducts, $scope.displayServices, cat);
 
     };
     $scope.moreDetail = function(productFlag, serviceFlag, category) {
@@ -70,22 +78,22 @@ angular.module('bubbleBaseApp')
       $rootScope.currentLevel = -1;
     }
     if (-1 === $rootScope.currentLevel) {
-      $rootScope.serviceTree = [];
-      $rootScope.productTree = [];
-      $rootScope.serviceLevelCat = [];
-      $rootScope.serviceLevelBus = [];
-      $rootScope.productLevelCat = [];
-      $rootScope.productLevelBus = [];
-      $rootScope.blueStyle =[];
-      $rootScope.greenStyle =[];
-      $rootScope.displayProducts = false;
-      $rootScope.displayServices = false;
+$scope.serviceTree = [];
+$scope.productTree = [];
+      $scope.serviceLevelCat = [];
+      $scope.serviceLevelBus = [];
+      $scope.productLevelCat = [];
+      $scope.productLevelBus = [];
+      $scope.blueStyle =[];
+      $scope.greenStyle =[];
+      $scope.displayProducts = false;
+      $scope.displayServices = false;
 
       for (i in greenRange) {
-        $rootScope.greenStyle.push({'background': '#'+greenRange[i] });
+        $scope.greenStyle.push({'background': '#'+greenRange[i] });
       }
       for (i in blueRange) {
-        $rootScope.blueStyle.push({'background': '#'+blueRange[i] });
+        $scope.blueStyle.push({'background': '#'+blueRange[i] });
       }
     }
     $scope.setupDisplay = function(products, services, category) {
@@ -101,31 +109,31 @@ angular.module('bubbleBaseApp')
           category = '';
       } else {
         $scope.showBubble('small-button');
-        $rootScope.displayProducts = products;
-        $rootScope.displayServices = services;
-        $rootScope.productLevelBus = [];
-        $rootScope.productLevelCat = [];
-        $rootScope.serviceLevelBus = [];
-        $rootScope.serviceLevelCat = [];
+        $scope.displayProducts = products;
+        $scope.displayServices = services;
+        $scope.productLevelBus = [];
+        $scope.productLevelCat = [];
+        $scope.serviceLevelBus = [];
+        $scope.serviceLevelCat = [];
 
         if (products) {
           results = DatabaseService.moreDetail(category);
           for (i in results.cat) {
-            $rootScope.productLevelCat.push(results.cat[i]);
+            $scope.productLevelCat.push(results.cat[i]);
             displayClass.push('productLevel'+i);
           }
           for (i in results.bus) {
-            $rootScope.productLevelBus.push(results.bus[i]);
+            $scope.productLevelBus.push(results.bus[i]);
             displayClass.push('p'+i);
           }
         } else if (services) {
           results = DatabaseService.moreDetail(category);
           for (i in results.cat) {
-            $rootScope.serviceLevelCat.push(results.cat[i]);
+            $scope.serviceLevelCat.push(results.cat[i]);
             displayClass.push('serviceLevel'+i);
           }
           for (i in results.bus) {
-            $rootScope.serviceLevelBus.push(results.bus[i]);
+            $scope.serviceLevelBus.push(results.bus[i]);
             displayClass.push('s'+i);
           }
         }

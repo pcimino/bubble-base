@@ -58,6 +58,9 @@
 	  font-family:"Times New Roman", Times, serif;
     opacity: 1.0;
 }
+.small-wide-button {
+    width: 70px;
+}
 .small-button-title {
     text-align:center;
     padding: 0px 0 0 0;
@@ -200,12 +203,16 @@ p {
   left: 65%;
 	top:40%;
 }
-.bubble-back {
-  left: 35%;
+.bubble-top {
+  left: 25%;
 	top:90%;
 }
-.bubble-reset {
-  left: 65%;
+.bubble-back {
+  left: 70%;
+	top:90%;
+}
+.bubble-address-book {
+  left: 45%;
 	top:90%;
 }
 

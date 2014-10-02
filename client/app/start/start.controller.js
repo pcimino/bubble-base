@@ -41,5 +41,3 @@ angular.module('bubbleBaseApp')
   });
 
 
-
-

@@ -1,23 +1,29 @@
 {
   "data": [
     {
-      "name": "Consumer Friendly",
-      "info": "Let the non-technical user easily find answers with intuitive UI."
+      "name": "Animation Using Keyframes",
+      "info": "They were working for both show/hide. Now some of the screens only work on show, not hide."
     }, {
-      "name": "Specialized",
-      "info": "The goal isn't to create a multi-purpose search, but a targeted set of filters for a specific purpose."
+      "name": "ngAnimate",
+      "info": "The goal is to move away from explicit keyframes and use ngAnimate to handle transitions."
     }, {
-      "name": "Smart Build System",
-      "info": "Build system ignores `spec` files, allowing you to keep tests alongside code. Automatic injection of scripts and styles into your index.html"
+      "name": "Directives, What Directives?",
+      "info": "The quick and dirty approach: $rootScope is all over the place. Need to create more/better services and directives."
     },  {
-      "name": "Modular Structure",
-      "info": "Best practice client and server structures allow for more code reusability and maximum scalability"
+      "name": "Unit Tests",
+      "info": "Um, yea, need to fix/create. Not much point yet since it's all a hack and I need to refactor into more modular pieces. Yes, tests are useful for regression. However this is more of a playground application and I keep rewriting big chunks just to see what happens. Do not expect anyone in their right mind to take this and run with it."
     },  {
-      "name": "Optimized Build",
-      "info": "Build process packs up your templates as a single JavaScript payload, minifies your scripts/css/images, and rewrites asset names for caching."
-    },{
-      "name": "Deployment Ready",
-      "info": "Easily deploy your app to Heroku or Openshift with the heroku and openshift subgenerators"
+      "name": "Dynamic Colors",
+      "info": "Bubbles should only nest two or three deep. However I would still like to calculate the colors based on number of parent categories and the levels down into the search."
+    },  {
+      "name": "Dynamic Placement",
+      "info": "Bubbles are tied to a predifined div and location on the screen. these should be dynamic and self organizing relative to each other's location."
+    },  {
+      "name": "Weird Bug",
+      "info": "In the browser console when loading the Search view, there's a 404. Apparently this is coming from the ng-repeats for the businesses that load an image. The collections are empty, so not sure why it is attempting to load the image src."
+    },  {
+      "name": "My Bug",
+      "info": "Need to sort out the show/hide on the Address Book button."
     }
   ]
 }

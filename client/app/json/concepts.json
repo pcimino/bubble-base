@@ -1,8 +1,8 @@
 {
   "data": [
     {
-      "name": "Animation Using Keyframes",
-      "info": "They were working for both show/hide. Now some of the screens only work on show, not hide."
+      "name": "Animation",
+      "info": "They were working for both show/hide. Now some of the screens only work on show, not hide. Need to sort out the show/hide on the Address Book button."
     }, {
       "name": "ngAnimate",
       "info": "The goal is to move away from explicit keyframes and use ngAnimate to handle transitions."
@@ -21,9 +21,6 @@
     },  {
       "name": "Weird Bug",
       "info": "In the browser console when loading the Search view, there's a 404. Apparently this is coming from the ng-repeats for the businesses that load an image. The collections are empty, so not sure why it is attempting to load the image src."
-    },  {
-      "name": "My Bug",
-      "info": "Need to sort out the show/hide on the Address Book button."
     }
   ]
 }

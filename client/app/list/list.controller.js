@@ -2,9 +2,17 @@
 angular.module('bubbleBaseApp')
   .controller('ListCtrl', function ($scope, $rootScope, $location) {
     $scope.addressList = [];
-    for (var i in $rootScope.businesses) {
-      if ($rootScope.businesses[i].addressBook) {
-        $scope.addressList.push($rootScope.businesses[i]);
+    if (undefined === $scope.businesses) {
+      $scope.businesses = [];
+    };
+
+    $rootScope.$on('listen_for_address_update', function(event, businesses) {
+      $scope.businesses = businesses;
+    });
+
+    for (var i in $scope.businesses) {
+      if ($scope.businesses[i].addressBook) {
+        $scope.addressList.push($scope.businesses[i]);
       }
     }
 
@@ -12,4 +20,3 @@ angular.module('bubbleBaseApp')
       $location.path('/bubble');
     };
   });
-

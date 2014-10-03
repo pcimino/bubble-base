@@ -7,11 +7,11 @@
 </header>
 
 <div id="bubbles">
-    <div class="bubble xProduct bubble-anim" ng-click="moreDetail(true, false, 'Products');" ng-style='{{greenStyle[0]}}'><p class="bubble-title">Products<p><p class>{{productCount}}</p></div>
-    <div class="bubble xService bubble-anim" ng-click="moreDetail(false, true, 'Services');" ng-style='{{blueStyle[0]}}'><p class="bubble-title">Services<p><p>{{serviceCount}}</p></div>
+    <div class="bubble xProduct bubble-anim" ng-click="moreDetail(true, false, 'Products');" ng-style='{{greenStyle[0]}}'><p class="bubble-title">Products<p><p class>{{data.productCount}}</p></div>
+    <div class="bubble xService bubble-anim" ng-click="moreDetail(false, true, 'Services');" ng-style='{{blueStyle[0]}}'><p class="bubble-title">Services<p><p>{{data.serviceCount}}</p></div>
     <div class="small-button bubble-back " ng-hide="currentLevel < 0" ng-click="lessDetail();" ng-style='{{greenStyle[0]}}'><p class="small-button-title">Back<p></div>
     <div class="small-button bubble-top" ng-hide="currentLevel < 0" ng-click="topLevel();" ng-style='{{blueStyle[0]}}'><p class="small-button-title">Top<p></div>
-    <div class="small-button small-wide-button bubble-address-book" ng-hide="!addressFlag" ng-click="addressBook()" ng-style='{{blueStyle[3]}}'><p class="small-button-title">Address Book<p></div>
+    <div class="small-button small-wide-button bubble-address-book" ng-hide="hideAddress" ng-click="addressBook()" ng-style='{{blueStyle[3]}}'><p class="small-button-title">Address Book<p></div>
 
     <div ng-repeat="cat in productLevelCat">
         <div class="bubble show-bubble bubble-anim productLevel{{$index}} bubble-category-text" ng-click="moreDetail(true, false, cat.cat);" ng-style='{{greenStyle[$index+1]}}'>
@@ -42,10 +42,4 @@
         </div>
     </div>
 </div>
-
-
-
-
-
-
 

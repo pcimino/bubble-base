@@ -1,45 +1,32 @@
 'use strict';
 
 angular.module('bubbleBaseApp')
-  .controller('AddressDialogCtrl', function ($scope, $rootScope, ngDialog, DatabaseService) {
-    $scope.featuresList = [];
-
-    if (undefined === $rootScope.addressFlag) {
-      $rootScope.addressFlag = false;
-    }
-    var addressCount = function(businessList) {
-      var count = 0;
-      for (var i in $rootScope.businesses) {
-        if ($rootScope.businesses[i].addressBook) {
-          count++;
-        }
-      }
-      $rootScope.addressFlag = count > 0;
-    };
-
+  .controller('AddressDialogCtrl', function ($scope, ngDialog, SharedProperties) {
     $scope.cancelAddressDialog = function() {
       ngDialog.closeAll();
     };
     $scope.removeAddress = function(id) {
+      var data = SharedProperties.getBlob();
       for (var i in $rootScope.businesses) {
-        if ($rootScope.businesses[i].id === id) {
-          $rootScope.businesses[i].addressBook = undefined;
+        if (data.businesses[i].id === id) {
+          data.businesses[i].addressBook = undefined;
         }
       }
-      addressCount();
+      //$rootScope.addressCount();
+      SharedProperties.setBlob(data);
       ngDialog.closeAll();
     };
     $scope.addAddress = function(id) {
-      for (var i in $rootScope.businesses) {
-        if ($rootScope.businesses[i].id === id) {
-          $rootScope.businesses[i].addressBook = true;
+      var data = SharedProperties.getBlob();
+      for (var i in data.businesses) {
+        if (data.businesses[i].id === id) {
+          data.businesses[i].addressBook = true;
         }
       }
 
-      addressCount();
+      //$rootScope.addressCount();
+      SharedProperties.setBlob(data);
       ngDialog.closeAll();
     };
-
-
 
   });

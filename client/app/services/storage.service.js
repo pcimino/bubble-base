@@ -14,7 +14,6 @@
 
     setDataBlob : Stores an array of business objects in session stlorage
       @arg {} blobby[] businesses
-
 */
 angular.module('bubbleBaseApp').service('StorageService',
   function($window) {
@@ -37,7 +36,6 @@ angular.module('bubbleBaseApp').service('StorageService',
       this.setByKey('businesses', businesses);
     };
 
-
     // generic helpers
     this.getByKey = function(key) {
       var resultArray = JSON.parse($window.sessionStorage.getItem(key));
@@ -49,6 +47,24 @@ angular.module('bubbleBaseApp').service('StorageService',
     };
     this.setByKey = function(key, objectArray) {
       $window.sessionStorage.setItem(key, JSON.stringify(objectArray));
+    };
+  }).service('SharedProperties', function ($rootScope) {
+    // not really happy about this. Pushing global data around with various solutions
+    // tying the emit into it at least notifies the listening services
+    var blob = {};
+
+    return {
+      getBlob: function () {
+        return blob;
+      },
+      setBlob: function(value, broadcast_event) {
+        var event = broadcast_event;
+        if (undefined === event) {
+          event = 'shared_data_update';
+        }
+        blob = value;
+        $rootScope.$broadcast(event, blob);
+      }
     };
   });
 

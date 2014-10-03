@@ -1,11 +1,8 @@
 {
   "data": [
     {
-      "name": "Animation",
-      "info": "They were working for both show/hide. Now some of the screens only work on show, not hide. Need to sort out the show/hide on the Address Book button."
-    }, {
       "name": "ngAnimate",
-      "info": "The goal is to move away from explicit keyframes and use ngAnimate to handle transitions."
+      "info": "The animation I've implemented is clunky. Looking at other examples, I should be able to clean this functionality up."
     }, {
       "name": "Directives, What Directives?",
       "info": "The quick and dirty approach: $rootScope is all over the place. Need to create more/better services and directives."
@@ -24,4 +21,3 @@
     }
   ]
 }
-

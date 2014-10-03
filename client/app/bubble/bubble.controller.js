@@ -4,40 +4,62 @@
     Color of the bubbles should be derived: Choose light for the intial and then progressivle darker for each level
     Position of bubbles should be dynamic, not defining bubbles and fixed div
 */
+
 angular.module('bubbleBaseApp')
-  .controller('BubbleCtrl', function ($scope, $rootScope, $location, StorageService, DatabaseService, ngDialog) {
+  .controller('BubbleCtrl', function ($scope, $rootScope, $location, StorageService, DatabaseService, ngDialog, ColorRangeService, SharedProperties) {
 
     var i;
-    var db = DatabaseService;
+    var blueRange = ColorRangeService.getBlueRange();
+    var greenRange = ColorRangeService.getGreenRange();
+    $scope.hideAddress = true;
+    $scope.data = {};
 
     if (undefined === $rootScope.businesses || $rootScope.businesses.length === 0) {
       DatabaseService.initializeDatabase();
     }
-    $rootScope.currentLevel = -1;
-    var blueRange = ['CCD6F5', '99ADEB', '6685E0', '335CD6', '0033CC'];
-    // var redRange = ['FFCCCC', 'FFB2B2', 'FF9999', 'FF8080', 'FF6666', 'FF4D4D', 'FF3333', 'FF1919', 'FF0000'];
-    var greenRange = ['01DF01', '04B404', '088A08', '0B610B', '0B3B0B', '003300'];
-    // var orangeRange = ['FFEBD6', 'FFE0C2', 'FFD6AD', 'FFCC99', 'FFC285', 'FFB870', 'FFAD5C', 'FFA347', 'FF9933' ];
+    $rootScope.$on('shared_data_update', function(event, data) {
+        $scope.data = data;
+        $rootScope.businesses = data.businesses;
+        $scope.addressCount();
+    });
 
+    $scope.addressCount = function() {
+      var count = 0;
+      for (var i in $rootScope.businesses) {
+        if ($rootScope.businesses[i].addressBook) {
+          count++;
+        }
+      }
+      if (count > 0) {
+         $scope.hideAddress = false;
+         $scope.showBubble('bubble-address-book');
+      } else {
+         $scope.hideBubble('bubble-address-book');
+         $scope.hideAddress = true;
+      }
+      SharedProperties.setBlob($scope.data, 'listen_for_address_update');
+    };
     $scope.addressBook = function() {
       $location.path('/list');
     };
     $scope.topLevel = function() {
-      $rootScope.currentLevel = -1;
+      $scope.data.currentLevel = -1;
       $scope.setupDisplay(false, false, '');
+      SharedProperties.setBlob($scope.data, 'listen_for_level_update');
     };
     $scope.lessDetail = function() {
-      $rootScope.currentLevel -= 1;
-      if ($rootScope.currentLevel < -1) {
-        $rootScope.currentLevel = -1;
+      $scope.data.currentLevel -= 1;
+      if ($scope.data.currentLevel < -1) {
+        $scope.data.currentLevel = -1;
       }
-      $rootScope.history.pop();
-      var cat = $rootScope.history.pop();
+      $scope.data.history.pop();
+      var cat = $scope.data.history.pop();
+      SharedProperties.setBlob($scope.data, 'listen_for_level_update');
       $scope.setupDisplay($scope.displayProducts, $scope.displayServices, cat);
-
     };
     $scope.moreDetail = function(productFlag, serviceFlag, category) {
-      $rootScope.currentLevel++;
+      $scope.data.currentLevel++;
+      SharedProperties.setBlob($scope.data, 'listen_for_level_update');
       $scope.setupDisplay(productFlag, serviceFlag, category);
     };
     $scope.addressBookModal = function(busId) {
@@ -74,30 +96,8 @@ angular.module('bubbleBaseApp')
       element.addClass('hide-bubble');
     };
 
-    if (undefined === $rootScope.currentLevel) {
-      $rootScope.currentLevel = -1;
-    }
-    if (-1 === $rootScope.currentLevel) {
-$scope.serviceTree = [];
-$scope.productTree = [];
-      $scope.serviceLevelCat = [];
-      $scope.serviceLevelBus = [];
-      $scope.productLevelCat = [];
-      $scope.productLevelBus = [];
-      $scope.blueStyle =[];
-      $scope.greenStyle =[];
-      $scope.displayProducts = false;
-      $scope.displayServices = false;
-
-      for (i in greenRange) {
-        $scope.greenStyle.push({'background': '#'+greenRange[i] });
-      }
-      for (i in blueRange) {
-        $scope.blueStyle.push({'background': '#'+blueRange[i] });
-      }
-    }
     $scope.setupDisplay = function(products, services, category) {
-      var level = $rootScope.currentLevel;
+      var level = $scope.data.currentLevel;
       var displayClass = [];
       var i, results;
       $scope.hideAllBubbles();
@@ -105,10 +105,14 @@ $scope.productTree = [];
       if (level === -1) {
           $scope.showBubble('xService');
           $scope.showBubble('xProduct');
-          $scope.hideBubble('small-button');
+          $scope.hideBubble('bubble-back');
+          $scope.hideBubble('bubble-top');
+          $scope.hideBubble('bubble-address-book');
           category = '';
       } else {
-        $scope.showBubble('small-button');
+        $scope.showBubble('bubble-back');
+        $scope.showBubble('bubble-top');
+        $scope.addressCount();
         $scope.displayProducts = products;
         $scope.displayServices = services;
         $scope.productLevelBus = [];
@@ -141,9 +145,32 @@ $scope.productTree = [];
           $scope.showBubble(displayClass[i]);
         }
       }
+      SharedProperties.setBlob($scope.data, 'listen_for_address_update');
     };
 
-    $scope.setupDisplay($rootScope.currentLevel);
+
+
+    if (undefined === $scope.data.currentLevel) {
+      $scope.data.currentLevel = -1;
+    }
+    if (-1 === $scope.data.currentLevel) {
+      $scope.serviceLevelCat = [];
+      $scope.serviceLevelBus = [];
+      $scope.productLevelCat = [];
+      $scope.productLevelBus = [];
+      $scope.blueStyle =[];
+      $scope.greenStyle =[];
+      $scope.displayProducts = false;
+      $scope.displayServices = false;
+
+      for (i in greenRange) {
+        $scope.greenStyle.push({'background': '#'+greenRange[i] });
+      }
+      for (i in blueRange) {
+        $scope.blueStyle.push({'background': '#'+blueRange[i] });
+      }
+    }
+    $scope.setupDisplay();
   });
 
 

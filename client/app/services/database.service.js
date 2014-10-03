@@ -12,29 +12,32 @@
 
 
 */
-
 angular.module('bubbleBaseApp').service('DatabaseService',
-  function($window, $rootScope, GetDataService) {
+  function($window, $rootScope, GetDataService, SharedProperties) {
     'use strict';
 
     // initialize the history
-    $rootScope.history = [];
+    var $scope = $rootScope.$new();
+    $scope.data = {};
 
     // load the data from the flatfile into memory
     this.initializeDatabase = function() {
       GetDataService.get( function( database ) {
-        $rootScope.businesses = database.data[0].businesses;
-        $rootScope.productCount = 0;
-        $rootScope.serviceCount = 0;
+        $scope.data.businesses = database.data[0].businesses;
+        $scope.data.history = [];
+        $scope.data.productCount = 0;
+        $scope.data.serviceCount = 0;
+        $scope.data.currentLevel = -1;
 
-        for (var i in $rootScope.businesses) {
-          if ($rootScope.businesses[i].productCategory.length > 0) {
-            $rootScope.productCount++;
+        for (var i in $scope.data.businesses) {
+          if ($scope.data.businesses[i].productCategory.length > 0) {
+            $scope.data.productCount++;
           }
-          if ($rootScope.businesses[i].serviceCategory.length > 0) {
-            $rootScope.serviceCount++;
+          if ($scope.data.businesses[i].serviceCategory.length > 0) {
+            $scope.data.serviceCount++;
           }
         }
+        SharedProperties.setBlob($scope.data);
       } );
     };
 
@@ -56,15 +59,15 @@ angular.module('bubbleBaseApp').service('DatabaseService',
       return undefined;
     };
 
-    var getBusinessCount = function(cat) {
+    var getBusinessCount = function(businesses, productFlag, cat) {
       var count = 0;
-      for (var i in $rootScope.businesses) {
-        if ($rootScope.productFlag) {
-          if (arrayHas($rootScope.businesses[i].productCategory, cat)) {
+      for (var i in businesses) {
+        if (productFlag) {
+          if (arrayHas(businesses[i].productCategory, cat)) {
             count++;
           }
         } else {
-          if (arrayHas($rootScope.businesses[i].serviceCategory, cat)) {
+          if (arrayHas(businesses[i].serviceCategory, cat)) {
             count++;
           }
         }
@@ -74,22 +77,24 @@ angular.module('bubbleBaseApp').service('DatabaseService',
 
     this.moreDetail = function(currentCategory) {
       var returnVal = {'cat':[], 'bus':[]};
-      if (undefined === $rootScope.currentLevel) {
-        $rootScope.currentLevel = -1;
+      $scope.data = SharedProperties.getBlob();
+
+      if (undefined === $scope.data.currentLevel) {
+        $scope.data.currentLevel = -1;
       }
-      $rootScope.history.push(currentCategory);
+      $scope.data.history.push(currentCategory);
       if ('Products' === currentCategory) {
         $rootScope.productFlag = true;
       } else if ('Services' === currentCategory) {
         $rootScope.productFlag = false;
       }
 
-      var level = $rootScope.currentLevel;
+      var level = $scope.data.currentLevel;
       // the complexity comes from the fact that I want to handle multiple businesses under the same category, otherwise
       // drilling down into a heirarchy is pointless, everything would just be one level down
 
-      for (var i in $rootScope.businesses) {
-        var business = $rootScope.businesses[i];
+      for (var i in $scope.businesses) {
+        var business = $scope.businesses[i];
         var categoryArray = business.serviceCategory;
         if ($rootScope.productFlag) {
           categoryArray = business.productCategory;
@@ -102,7 +107,7 @@ angular.module('bubbleBaseApp').service('DatabaseService',
             pushFlag = true;
           }
           if (pushFlag && !arrayHasCat(returnVal.cat, categoryArray[level])) {
-            returnVal.cat.push({'cat':categoryArray[level], 'count': getBusinessCount(categoryArray[level])});
+            returnVal.cat.push({'cat':categoryArray[level], 'count': getBusinessCount($scope.data.businesses, $rootScope.productFlag, categoryArray[level])});
           }
 
         }
@@ -110,7 +115,7 @@ angular.module('bubbleBaseApp').service('DatabaseService',
           returnVal.bus.push(business);
         }
       }
-
+      SharedProperties.setBlob($scope.data);
       return returnVal;
     };
 

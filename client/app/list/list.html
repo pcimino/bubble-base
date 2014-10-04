@@ -14,7 +14,7 @@
             <div class="left">{{business.phone}}</div>
             <div class="left">
             <span ng-repeat="socialMedia in business.socialMedia">
-                <a href="{{socialMedia.link}}" target="_blank"><img src="/assets/images/{{socialMedia.logo}}" height="30px" width="30px"></a>
+                <a href="{{socialMedia.link}}" target="_blank"><img ng-src="/assets/images/{{socialMedia.logo}}" height="30px" width="30px"></a>
             </span>
             </div>
         </div>

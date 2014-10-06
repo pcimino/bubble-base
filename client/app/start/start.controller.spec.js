@@ -7,23 +7,25 @@ describe('Controller: StartCtrl', function () {
 
   var StartCtrl,
       scope,
-      $httpBackend;
+      $location,
+      GetSlidesService;
 
   // Initialize the controller and a mock scope
-  beforeEach(inject(function (_$httpBackend_, $controller, $rootScope) {
-    $httpBackend = _$httpBackend_;
-    $httpBackend.expectGET('/api/things')
-      .respond(['HTML5 Boilerplate', 'AngularJS', 'Karma', 'Express']);
-
+  beforeEach(inject(function ($controller, $rootScope, $location) {
     scope = $rootScope.$new();
+
+    GetSlidesService = {
+      get: function() { return [{'data':'data'}]}
+    };
     StartCtrl = $controller('StartCtrl', {
-      $scope: scope
+      $scope: scope,
+      $location: $location,
+      GetSlidesService: GetSlidesService
     });
   }));
 
-  it('should attach a list of things to the scope', function () {
-    $httpBackend.flush();
-    expect(scope.awesomeThings.length).toBe(4);
-  });
+  // verify controller created
+  it('should be able to create the controller', inject(function($rootScope, $controller, $location, GetSlidesService) {
+        expect(StartCtrl).toBeDefined();
+  }));
 });
-

@@ -1,10 +1,12 @@
 'use strict';
 
 angular.module('bubbleBaseApp')
-  .controller('MainCtrl', function ($scope, $http, GetConceptsService) {
+  .controller('MainCtrl', function ($scope, GetConceptsService) {
     $scope.featuresList = [];
 
     GetConceptsService.get( function( database ) {
         $scope.featuresList = database.data;
     } );
+
+    console.log('BBBBBBBBBBBBBBBBBBBBBBB ' + $scope.featuresList)
   });

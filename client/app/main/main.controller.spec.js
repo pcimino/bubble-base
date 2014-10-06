@@ -7,24 +7,28 @@ describe('Controller: MainCtrl', function () {
 
   var MainCtrl,
       scope,
-      $httpBackend;
+      GetConceptsService;
 
   // Initialize the controller and a mock scope
-  beforeEach(inject(function (_$httpBackend_, $controller, $rootScope) {
-    $httpBackend = _$httpBackend_;
-    $httpBackend.expectGET('/api/concepts')
-      .respond(['HTML5 Boilerplate', 'AngularJS', 'Karma', 'Express']);
+  beforeEach(inject(function ($controller, $rootScope, GetConceptsService) {
+      spyOn(GetConceptsService, 'get').andReturn([{'data':'mockReturnValue'}]);
 
-    scope = $rootScope.$new();
-    MainCtrl = $controller('MainCtrl', {
-      $scope: scope
-    });
+      scope = $rootScope.$new();
+
+      MainCtrl = $controller('MainCtrl', {
+        $scope: scope,
+        GetConceptsService: GetConceptsService
+      });
+
   }));
 
-  it('should attach a list of things to the scope', function () {
-    $httpBackend.flush();
-    expect(scope.concepts.length).toBe(4);
-  });
-});
+  it('should be able to create the controller', inject(function($rootScope, $controller, GetConceptsService) {
+        expect(MainCtrl).toBeDefined();
+  }));
 
+  it('should have defined features', inject(function($rootScope, $controller, GetConceptsService) {
+        expect(scope.featuresList).toBeDefined();
+        expect(scope.featuresList.length).toBe(1);
+  }));
+});
 

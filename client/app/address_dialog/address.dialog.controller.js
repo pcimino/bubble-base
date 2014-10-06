@@ -7,7 +7,7 @@ angular.module('bubbleBaseApp')
     };
     $scope.removeAddress = function(id) {
       var data = SharedProperties.getBlob();
-      for (var i in $rootScope.businesses) {
+      for (var i in data.businesses) {
         if (data.businesses[i].id === id) {
           data.businesses[i].addressBook = undefined;
         }

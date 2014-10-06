@@ -28,7 +28,7 @@
 
     <div ng-repeat="business in serviceLevelBus">
         <div class="bubble show-bubble bubble-anim s{{$index}} font-center bubble-provider-text" ng-style='{{greenStyle[$index+1]}}' ng-click="addressBookModal(business.id)">
-            <img class='top-margin' src="/assets/images/{{business.img}}"  height="{{business.imgHeight}}" width="{{business.imgWidth}}">
+            <img class='top-margin' ng-src="/assets/images/{{business.img}}"  height="{{business.imgHeight}}" width="{{business.imgWidth}}">
             <p>{{business.name}}</p>
             <p>{{business.phone}}</p>
         </div>
@@ -36,7 +36,7 @@
 
     <div ng-repeat="business in productLevelBus">
         <div class="bubble show-bubble bubble-anim p{{$index}} font-center bubble-provider-text" ng-style='{{blueStyle[$index+1]}}' ng-click="addressBookModal(business.id)">
-            <img class='top-margin' src="/assets/images/{{business.img}}"  height="{{business.imgHeight}}" width="{{business.imgWidth}}">
+            <img class='top-margin' ng-src="/assets/images/{{business.img}}"  height="{{business.imgHeight}}" width="{{business.imgWidth}}">
             <p>{{business.name}}</p>
             <p>{{business.phone}}</p>
         </div>

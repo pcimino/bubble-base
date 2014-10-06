@@ -82,6 +82,9 @@ angular.module('bubbleBaseApp').service('DatabaseService',
       if (undefined === $scope.data.currentLevel) {
         $scope.data.currentLevel = -1;
       }
+      if (undefined === $scope.data) {
+        $scope.data = [];
+      }
       $scope.data.history.push(currentCategory);
       if ('Products' === currentCategory) {
         $rootScope.productFlag = true;

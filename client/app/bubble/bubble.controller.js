@@ -16,7 +16,12 @@ angular.module('bubbleBaseApp')
 
     if (undefined === $rootScope.businesses || $rootScope.businesses.length === 0) {
       DatabaseService.initializeDatabase();
+    } else {
+      $scope.data = SharedProperties.getBlob();
+      $scope.data.currentLevel = -1;
+      SharedProperties.setBlob($scope.data, 'ignore');
     }
+
     $rootScope.$on('shared_data_update', function(event, data) {
         $scope.data = data;
         $rootScope.businesses = data.businesses;
@@ -43,11 +48,14 @@ angular.module('bubbleBaseApp')
       $location.path('/list');
     };
     $scope.topLevel = function() {
+      $scope.data = SharedProperties.getBlob();
       $scope.data.currentLevel = -1;
       $scope.setupDisplay(false, false, '');
       SharedProperties.setBlob($scope.data, 'listen_for_level_update');
     };
     $scope.lessDetail = function() {
+      $scope.data = SharedProperties.getBlob();
+
       $scope.data.currentLevel -= 1;
       if ($scope.data.currentLevel < -1) {
         $scope.data.currentLevel = -1;
@@ -58,6 +66,7 @@ angular.module('bubbleBaseApp')
       $scope.setupDisplay($scope.displayProducts, $scope.displayServices, cat);
     };
     $scope.moreDetail = function(productFlag, serviceFlag, category) {
+      $scope.data = SharedProperties.getBlob();
       $scope.data.currentLevel++;
       SharedProperties.setBlob($scope.data, 'listen_for_level_update');
       $scope.setupDisplay(productFlag, serviceFlag, category);
@@ -172,6 +181,7 @@ angular.module('bubbleBaseApp')
     }
     $scope.setupDisplay();
   });
+
 
 
 

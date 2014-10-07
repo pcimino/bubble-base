@@ -8,5 +8,5 @@ angular.module('bubbleBaseApp')
         $scope.featuresList = database.data;
     } );
 
-    console.log('BBBBBBBBBBBBBBBBBBBBBBB ' + $scope.featuresList)
   });
+

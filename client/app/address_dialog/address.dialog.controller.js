@@ -12,7 +12,6 @@ angular.module('bubbleBaseApp')
           data.businesses[i].addressBook = undefined;
         }
       }
-      //$rootScope.addressCount();
       SharedProperties.setBlob(data);
       ngDialog.closeAll();
     };
@@ -23,10 +22,9 @@ angular.module('bubbleBaseApp')
           data.businesses[i].addressBook = true;
         }
       }
-
-      //$rootScope.addressCount();
       SharedProperties.setBlob(data);
       ngDialog.closeAll();
     };
 
   });
+

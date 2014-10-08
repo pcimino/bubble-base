@@ -7,7 +7,7 @@ angular.module('bubbleBaseApp')
     $scope.slideNumber = 0;
     $scope.nextLabel = "Next";
     $scope.nextColor = '#04B404';
-    alert('AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA2 ' + JSON.stringify(GetSlidesService))
+
     GetSlidesService.get( function( database ) {
         $scope.slides = database.data;
     } );
@@ -40,4 +40,5 @@ angular.module('bubbleBaseApp')
     };
 
   });
+
 

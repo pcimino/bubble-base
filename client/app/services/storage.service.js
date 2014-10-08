@@ -60,12 +60,13 @@ angular.module('bubbleBaseApp').service('StorageService',
       setBlob: function(value, broadcast_event) {
         var event = broadcast_event;
         if (undefined === event) {
-          event = 'shared_data_update';
+          event = 'event_data_update';
         }
         blob = value;
         $rootScope.$broadcast(event, blob);
       }
     };
   });
+
 
 

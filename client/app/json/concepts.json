@@ -4,11 +4,14 @@
       "name": "Animation",
       "info": "The animation I've implemented is clunky. using the core CSS animation with classes, should be able to clean this up with ngAnimate."
     }, {
-      "name": "Directives, What Directives?",
-      "info": "The quick and dirty approach: $rootScope is all over the place. Need to create more/better services and directives."
+      "name": "Custom Directives?",
+      "info": "Nope. Nada. Zilch. The bubble animation should all be handled with the ngAnimate library or custom directives. If I have time, this is the next thing I want to revisit."
+    }, {
+      "name": "Services, Services and Events",
+      "info": "This started as a pure hack to look at CSS animation. If I have the time I need to rewrite all the logic. As it is, I took all the $rootScope mess and moved code to services, which cleaned it up. I still needed cross-controller communication so I have some event broadcasters and listeners. The proper way to do this would be to design, or at least imagine, a database and layout the Services like a REST or DAO layer."
     },  {
       "name": "Unit Tests",
-      "info": "Um, yea, need to fix. On the flip side this is a playground concept: I do not expect anyone in their right mind to take this and run with it."
+      "info": "There are some BASIC unit tests, not even close to really covering the code.. On the flip side this is a playground concept: I do not expect anyone in their right mind to take this and run with it."
     },  {
       "name": "Dynamic Colors",
       "info": "Bubbles should only nest two or three deep. However I would still like to calculate the colors based on number of parent categories and the levels down into the search."
@@ -21,3 +24,4 @@
     }
   ]
 }
+

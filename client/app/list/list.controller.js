@@ -1,22 +1,26 @@
 'use strict';
 angular.module('bubbleBaseApp')
-  .controller('ListCtrl', function ($scope, $rootScope, $location) {
+  .controller('ListCtrl', function ($scope, $rootScope, $location, SharedProperties) {
     $scope.addressList = [];
-    if (undefined === $scope.businesses) {
-      $scope.businesses = [];
-    };
+    $scope.data = SharedProperties.getBlob();
 
-    $rootScope.$on('listen_for_address_update', function(event, businesses) {
-      $scope.businesses = businesses;
+
+    $rootScope.$on('event_address_update', function(event, data) {
+      $scope.data = data;
+      buildAddressList();
     });
-
-    for (var i in $scope.businesses) {
-      if ($scope.businesses[i].addressBook) {
-        $scope.addressList.push($scope.businesses[i]);
-      }
-    }
 
     $scope.search = function() {
       $location.path('/bubble');
     };
+
+    var buildAddressList = function() {
+      for (var i in $scope.data.businesses) {
+        if ($scope.data.businesses[i].addressBook) {
+          $scope.addressList.push($scope.data.businesses[i]);
+        }
+      }
+    };
+    buildAddressList();
   });
+

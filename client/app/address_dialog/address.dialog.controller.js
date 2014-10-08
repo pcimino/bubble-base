@@ -12,7 +12,7 @@ angular.module('bubbleBaseApp')
           data.businesses[i].addressBook = undefined;
         }
       }
-      SharedProperties.setBlob(data);
+      SharedProperties.setBlob(data, 'event_address_update');
       ngDialog.closeAll();
     };
     $scope.addAddress = function(id) {
@@ -22,9 +22,11 @@ angular.module('bubbleBaseApp')
           data.businesses[i].addressBook = true;
         }
       }
-      SharedProperties.setBlob(data);
+      SharedProperties.setBlob(data, 'event_address_update');
       ngDialog.closeAll();
     };
 
   });
+
+
 

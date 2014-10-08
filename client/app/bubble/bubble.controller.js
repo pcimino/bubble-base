@@ -6,32 +6,36 @@
 */
 
 angular.module('bubbleBaseApp')
-  .controller('BubbleCtrl', function ($scope, $rootScope, $location, StorageService, DatabaseService, ngDialog, ColorRangeService, SharedProperties) {
+  .controller('BubbleCtrl', function ($scope, $rootScope, $location, DatabaseService, ngDialog, ColorRangeService, SharedProperties) {
 
     var i;
     var blueRange = ColorRangeService.getBlueRange();
     var greenRange = ColorRangeService.getGreenRange();
     $scope.hideAddress = true;
-    $scope.data = {};
 
-    if (undefined === $rootScope.businesses || $rootScope.businesses.length === 0) {
+    // Read the blob
+    $scope.data = SharedProperties.getBlob();
+    $scope.data.currentLevel = -1;
+    SharedProperties.setBlob($scope.data, 'ignore');
+
+    // first time? Get the data
+    if (undefined === $scope.data.businesses || $scope.data.businesses.length === 0) {
       DatabaseService.initializeDatabase();
-    } else {
-      $scope.data = SharedProperties.getBlob();
-      $scope.data.currentLevel = -1;
-      SharedProperties.setBlob($scope.data, 'ignore');
     }
 
-    $rootScope.$on('shared_data_update', function(event, data) {
+    $rootScope.$on('event_data_update', function(event, data) {
         $scope.data = data;
-        $rootScope.businesses = data.businesses;
+        $scope.addressCount();
+    });
+    $rootScope.$on('event_address_update', function(event, data) {
+        $scope.data = data;
         $scope.addressCount();
     });
 
     $scope.addressCount = function() {
       var count = 0;
-      for (var i in $rootScope.businesses) {
-        if ($rootScope.businesses[i].addressBook) {
+      for (var i in $scope.data.businesses) {
+        if ($scope.data.businesses[i].addressBook) {
           count++;
         }
       }
@@ -72,10 +76,10 @@ angular.module('bubbleBaseApp')
       $scope.setupDisplay(productFlag, serviceFlag, category);
     };
     $scope.addressBookModal = function(busId) {
-      for (var i in $rootScope.businesses) {
-        if ($rootScope.businesses[i].id === busId) {
+      for (var i in $scope.data.businesses) {
+        if ($scope.data.businesses[i].id === busId) {
           var templateString = "<p>Address Book</p>";
-          if ($rootScope.businesses[i].addressBook) {
+          if ($scope.data.businesses[i].addressBook) {
             templateString = templateString + "<p><a href='' ng-click='removeAddress(\"" + busId + "\")' class='btn btn-primary btn-sm right-margin'>Remove From Address Book</a><a href='' ng-click='cancelAddressDialog()' class='btn btn-success btn-sm'>Cancel</a></p>";
           } else {
             templateString = templateString + "<p><a href='' ng-click='addAddress(\"" + busId + "\")' class='btn btn-primary btn-sm right-margin'>Add To Address Book</a><a href='' ng-click='cancelAddressDialog()' class='btn btn-success btn-sm'>Cancel</a></p>";
@@ -181,6 +185,7 @@ angular.module('bubbleBaseApp')
     }
     $scope.setupDisplay();
   });
+
 
 
 

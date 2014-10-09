@@ -7,28 +7,31 @@ describe('Controller: MainCtrl', function () {
 
   var MainCtrl,
       scope,
-      GetConceptsService;
+      mockGetConceptsService;
 
   // Initialize the controller and a mock scope
   beforeEach(inject(function ($controller, $rootScope, GetConceptsService) {
-      spyOn(GetConceptsService, 'get').andReturn([{'data':'mockReturnValue'}]);
+      mockGetConceptsService = GetConceptsService;
+      spyOn(mockGetConceptsService, 'get').andCallFake(
+        function() {
+          scope.featuresList = [{'data':'mockReturnValue'}];
+        });
 
       scope = $rootScope.$new();
 
       MainCtrl = $controller('MainCtrl', {
         $scope: scope,
-        GetConceptsService: GetConceptsService
+        GetConceptsService: mockGetConceptsService
       });
 
   }));
 
-  it('should be able to create the controller', inject(function($rootScope, $controller, GetConceptsService) {
+  it('should be able to create the controller', inject(function($rootScope, $controller) {
         expect(MainCtrl).toBeDefined();
   }));
 
-  it('should have defined features', inject(function($rootScope, $controller, GetConceptsService) {
+  it('should have defined features', inject(function($rootScope, $controller) {
         expect(scope.featuresList).toBeDefined();
         expect(scope.featuresList.length).toBe(1);
   }));
 });
-

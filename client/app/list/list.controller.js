@@ -4,7 +4,6 @@ angular.module('bubbleBaseApp')
     $scope.addressList = [];
     $scope.data = SharedProperties.getBlob();
 
-
     $rootScope.$on('event_address_update', function(event, data) {
       $scope.data = data;
       buildAddressList();
@@ -15,6 +14,7 @@ angular.module('bubbleBaseApp')
     };
 
     var buildAddressList = function() {
+      $scope.addressList = [];
       for (var i in $scope.data.businesses) {
         if ($scope.data.businesses[i].addressBook) {
           $scope.addressList.push($scope.data.businesses[i]);
@@ -23,4 +23,3 @@ angular.module('bubbleBaseApp')
     };
     buildAddressList();
   });
-

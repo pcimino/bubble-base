@@ -5,7 +5,7 @@ angular.module('bubbleBaseApp')
     $scope.featuresList = [];
 
     GetConceptsService.get( function( database ) {
-      alert(1)
         $scope.featuresList = database.data;
     } );
   });
+

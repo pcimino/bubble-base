@@ -5,7 +5,7 @@ angular.module('bubbleBaseApp')
 
     $scope.slides = [];
     $scope.slideNumber = 0;
-    $scope.nextLabel = "Next";
+    $scope.nextLabel = 'Next';
     $scope.nextColor = '#04B404';
 
     GetSlidesService.get( function( database ) {
@@ -14,10 +14,10 @@ angular.module('bubbleBaseApp')
 
     var update = function() {
       if ($scope.slideNumber === $scope.slides.length-1) {
-        $scope.nextLabel = "Demo";
+        $scope.nextLabel = 'Demo';
         $scope.nextColor = '#FF0000';
       } else {
-        $scope.nextLabel = "Next";
+        $scope.nextLabel = 'Next';
         $scope.nextColor = '#04B404';
       }
     };

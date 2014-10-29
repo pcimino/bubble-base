@@ -22,7 +22,7 @@ module.exports = function(config) {
       'client/bower_components/lodash/dist/lodash.compat.js',
       'client/bower_components/angular-ui-router/release/angular-ui-router.js',
       'client/bower_components/angular-animate/angular-animate.js',
-      'client/app/app.js',
+      'client/app.js',
       'client/app/**/*.js',
       'client/components/**/*.js',
       'client/app/**/*.html',
@@ -30,6 +30,7 @@ module.exports = function(config) {
     ],
 
     preprocessors: {
+
       '**/*.html': 'html2js'
     },
 

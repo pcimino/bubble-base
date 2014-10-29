@@ -40,7 +40,7 @@ angular.module('bubbleBaseApp').service('DatabaseService',
 
     this.moreDetail = function(currentCategory) {
       return BubbleCalcService.moreDetail(currentCategory);
-    }
+    };
   });
 
 

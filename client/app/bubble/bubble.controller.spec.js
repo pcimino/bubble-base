@@ -25,7 +25,7 @@ describe('Controller: BubbleCtrl', function () {
   }));
 
   // verify controller created
-  it('should be able to create the controller', inject(function($rootScope, $controller, $location) {
+  it("should be able to create the controller", inject(function($rootScope, $controller, $location) {
         expect(BubbleCtrl).toBeDefined();
   }));
 });

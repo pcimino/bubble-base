@@ -15,9 +15,10 @@
     setDataBlob : Stores an array of business objects in session stlorage
       @arg {} blobby[] businesses
 */
+ 'use strict';
 angular.module('bubbleBaseApp').service('StorageService',
   function($window) {
-    'use strict';
+
     // get data blob
     this.getDataBlob = function() {
       return this.getByKey('dataBlob');
@@ -57,8 +58,8 @@ angular.module('bubbleBaseApp').service('StorageService',
       getBlob: function () {
         return blob;
       },
-      setBlob: function(value, broadcast_event) {
-        var event = broadcast_event;
+      setBlob: function(value, broadcastEvent) {
+        var event = broadcastEvent;
         if (undefined === event) {
           event = 'event_data_update';
         }

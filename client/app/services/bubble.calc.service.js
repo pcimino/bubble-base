@@ -1,15 +1,9 @@
 /*
   Business logic for displaying the correct level of bubbles
 */
+'use strict';
 angular.module('bubbleBaseApp').factory('BubbleCalcService', function(SharedProperties) {
     var calcService = {};
-
-    calcService.add = function(item) {
-        items.push(item);
-    };
-    calcService.list = function() {
-        return items;
-    };
 
     // TODO set this up as a prototype on array
     var arrayHas = function(testArray, v) {

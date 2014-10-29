@@ -19,10 +19,10 @@ describe('Controller: StartCtrl', function () {
     spyOn(mockGetSlidesService, 'get').andCallFake(
         function() {
           scope.slides = [
-            { "id": "slide0" },
-            { "id": "slide1" },
-            { "id": "slide2" },
-            { "id": "slide3" }
+            { 'id': 'slide0' },
+            { 'id': 'slide1' },
+            { 'id': 'slide2' },
+            { 'id': 'slide3' }
           ];
         });
 
@@ -37,14 +37,14 @@ describe('Controller: StartCtrl', function () {
   it('should be able to create the controller', inject(function($rootScope, $controller) {
     expect(StartCtrl).toBeDefined();
     expect(scope.slideNumber).toBe(0);
-    expect(scope.nextLabel).toBe("Next");
+    expect(scope.nextLabel).toBe('Next');
     expect(scope.slides.length).toBe(4);
   }));
   // verify next
   it('should be able to move through the slides', inject(function($rootScope, $controller) {
     scope.nextSlide();
     expect(scope.slideNumber).toBe(1);
-    expect(scope.nextLabel).toBe("Next");
+    expect(scope.nextLabel).toBe('Next');
 
     scope.previousSlide();
     expect(scope.slideNumber).toBe(0);
@@ -58,7 +58,7 @@ describe('Controller: StartCtrl', function () {
     scope.slideNumber = scope.slides.length - 2;
     scope.nextSlide();
     expect(scope.slideNumber).toBe(scope.slides.length - 1);
-    expect(scope.nextLabel).toBe("Demo");
+    expect(scope.nextLabel).toBe('Demo');
   }));
   // verify nav
   it('move past last slide should change url', inject(function($rootScope, $controller) {

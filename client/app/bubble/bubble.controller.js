@@ -1,9 +1,9 @@
 'use strict';
 
-/* TODO
-    Color of the bubbles should be derived: Choose light for the intial and then progressivle darker for each level
-    Position of bubbles should be dynamic, not defining bubbles and fixed div
-*/
+// TODO
+//    Color of the bubbles should be derived: Choose light for the intial and then progressivle darker for each level
+//    Position of bubbles should be dynamic, not defining bubbles and fixed div
+//
 
 angular.module('bubbleBaseApp')
   .controller('BubbleCtrl', function ($scope, $rootScope, $location, DatabaseService, ngDialog, ColorRangeService, SharedProperties) {
@@ -77,17 +77,17 @@ angular.module('bubbleBaseApp')
     };
     $scope.addressBookModal = function(busId) {
       for (var i in $scope.data.businesses) {
+          var templateString = '<p>Address Book</p>';
         if ($scope.data.businesses[i].id === busId) {
-          var templateString = "<p>Address Book</p>";
           if ($scope.data.businesses[i].addressBook) {
-            templateString = templateString + "<p><a href='' ng-click='removeAddress(\"" + busId + "\")' class='btn btn-primary btn-sm right-margin'>Remove From Address Book</a><a href='' ng-click='cancelAddressDialog()' class='btn btn-success btn-sm'>Cancel</a></p>";
+            templateString = templateString + '<p><a href="" ng-click="removeAddress(\'' + busId + '\')" class="btn btn-primary btn-sm right-margin">Remove From Address Book</a><a href="" ng-click="cancelAddressDialog()" class="btn btn-success btn-sm">Cancel</a></p>';
           } else {
-            templateString = templateString + "<p><a href='' ng-click='addAddress(\"" + busId + "\")' class='btn btn-primary btn-sm right-margin'>Add To Address Book</a><a href='' ng-click='cancelAddressDialog()' class='btn btn-success btn-sm'>Cancel</a></p>";
+            templateString = templateString + '<p><a href="" ng-click="addAddress(\'' + busId + '\')" class="btn btn-primary btn-sm right-margin">Add To Address Book</a><a href="" ng-click="cancelAddressDialog()" class="btn btn-success btn-sm">Cancel</a></p>';
           }
-          ngDialog.open({template:templateString, showClose:true, controller:"AddressDialogCtrl", plain:true}); // 'address.template.html');
+          ngDialog.open({template:templateString, showClose:true, controller:'AddressDialogCtrl', plain:true}); // 'address.template.html');
         }
       }
-    }
+    };
 
     $scope.hideAllBubbles = function() {
       // can't simply call hide on class 'bubble' because it will show the bubbles prior to hiding
@@ -160,9 +160,7 @@ angular.module('bubbleBaseApp')
       }
       SharedProperties.setBlob($scope.data, 'listen_for_address_update');
     };
-
-
-
+    
     if (undefined === $scope.data.currentLevel) {
       $scope.data.currentLevel = -1;
     }
@@ -171,16 +169,16 @@ angular.module('bubbleBaseApp')
       $scope.serviceLevelBus = [];
       $scope.productLevelCat = [];
       $scope.productLevelBus = [];
-      $scope.blueStyle =[];
-      $scope.greenStyle =[];
+      $scope.blueStyle = [];
+      $scope.greenStyle = [];
       $scope.displayProducts = false;
       $scope.displayServices = false;
 
       for (i in greenRange) {
-        $scope.greenStyle.push({'background': '#'+greenRange[i] });
+        $scope.greenStyle.push({'background': '#' + greenRange[i] });
       }
       for (i in blueRange) {
-        $scope.blueStyle.push({'background': '#'+blueRange[i] });
+        $scope.blueStyle.push({'background': '#' + blueRange[i] });
       }
     }
     $scope.setupDisplay();

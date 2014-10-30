@@ -3,7 +3,7 @@
   "version": "0.6.0",
   "description": "Demo UI Search",
   "main": "node-server.js",
-  "author": "Paul Cimino <paul.cimino@capitalone.com>",
+  "author": "Paul Cimino <pcimino@translunardesigns.com>",
   "directories": {
     "source": "client",
     "test": "test"
